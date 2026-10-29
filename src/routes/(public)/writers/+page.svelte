@@ -16,7 +16,7 @@
 		<article class="file" style="--r:{i % 2 ? 0.8 : -0.8}deg">
 			<span class="clip" aria-hidden="true"></span>
 			<header>
-				<img src={w.face} alt="" width="64" height="64" />
+				<img src={w.face} alt="{w.name} 작가 그림" width="76" height="76" />
 				<div>
 					<span class="no">작가 파일 0{i + 1}</span>
 					<h2>{w.name} <small class="tnum">{w.years}</small></h2>
@@ -47,7 +47,7 @@
 	.file { position: relative; background: #f7efd9; padding: 18px 16px 16px; transform: rotate(var(--r)); box-shadow: 2px 6px 12px rgba(30, 15, 5, 0.38); border-top: 6px solid #c99f5f; }
 	.clip { position: absolute; top: -12px; right: 22px; width: 14px; height: 34px; border: 3px solid #8c8c8c; border-radius: 8px; }
 	header { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
-	header img { border-radius: 50%; border: 2px solid #6b3f22; background: #fff; flex: none; }
+	header img { width: 76px; height: 76px; border-radius: 12px; border: 2px solid #6b3f22; background: #f2e2c0; flex: none; }
 	.no { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #8a5a12; }
 	h2 { margin: 0; font-size: 24px; }
 	h2 small { font-size: 13px; color: #7a6a58; margin-left: 4px; }

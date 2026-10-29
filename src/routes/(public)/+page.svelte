@@ -48,18 +48,38 @@
 	</div>
 
 	<div class="row">
-		<!-- 2. 숨은그림찾기 봉투 -->
-		<a class="envelope" href="/hidden" data-string="2">
+		<!-- 2. 무전 기록: 지금 어디가 한산한지 -->
+		<a class="radio" href="/status" data-string="2">
+			<Pin color="#b8862b" />
+			<span class="label">현장 무전</span>
+			<strong>{busy ? `${busy}곳이 붐벼요` : '모든 부스 원활'}</strong>
+			<span class="small">어디가 한산한지 보고 가요</span>
+			{#if live.enabled}<span class="live" class:on={live.connected}>● 실시간</span>{/if}
+		</a>
+
+		<!-- 3. 수칙: 시작 전에 한 번 -->
+		<div class="note">
+			<span class="tape c"></span>
+			<b>신입 탐정 수칙</b>
+			<ol><li>천천히 움직이기</li><li>동료 탐정 배려하기</li><li>도구 소중히</li><li>어려우면 요원 호출</li><li>끝까지 임무 완수!</li></ol>
+		</div>
+	</div>
+
+	<p class="tag"><span>기다리는 동안 해 봐요</span></p>
+
+	<div class="row">
+		<!-- 4. 숨은그림찾기 봉투 -->
+		<a class="envelope" href="/hidden" data-string="3">
 			<Pin color="#2d5aa8" />
 			<span class="flap"></span>
 			<span class="label">보너스 미션</span>
 			<strong>숨은그림찾기</strong>
-			<span class="small">기다리는 동안 해 봐요.<br />꼭 안 해도 괜찮아요!</span>
+			<span class="small">꼭 안 해도 괜찮아요!</span>
 			<span class="stamp">자유 참여</span>
 		</a>
 
-		<!-- 3. 시험지 -->
-		<a class="exam" href="/quiz" data-string="3">
+		<!-- 5. 시험지 -->
+		<a class="exam" href="/quiz" data-string="4">
 			<Pin color="#2f6e3c" />
 			<span class="clip"></span>
 			<span class="label">신입 탐정 시험</span>
@@ -69,47 +89,33 @@
 	</div>
 
 	<div class="row">
-		<!-- 4. 무전 기록 -->
-		<a class="radio" href="/status" data-string="4">
-			<Pin color="#b8862b" />
-			<span class="label">현장 무전</span>
-			<strong>{busy ? `${busy}곳이 붐벼요` : '모든 부스 원활'}</strong>
-			<span class="small">어디가 한산한지 보고 가요</span>
-			{#if live.enabled}<span class="live" class:on={live.connected}>● 실시간</span>{/if}
-		</a>
-
-		<!-- 5. 신분증 -->
-		<a class="idcard" href="/badge" data-string="5">
-			<Pin color="#a8325f" />
-			<span class="photo" aria-hidden="true"></span>
-			<span class="txt"><span class="label">두 사건 해결 후</span><strong>임명장 받기</strong>
-				{#if live.enabled}<span class="small">오늘 신입 탐정 <b class="tnum">{live.detectives}</b>명</span>{/if}</span>
-		</a>
-	</div>
-
-	<div class="row">
-		<!-- 6. 작가 도감 -->
-		<a class="book" href="/writers">
-			<span class="ribbon" aria-hidden="true"></span>
-			<span class="label">보물상자 속 작가님</span>
-			<strong>작가 도감</strong>
-			<span class="faces" aria-hidden="true">{#each [1, 2, 3, 4] as n}<img src="/hidden/item{n}.jpg" alt="" width="30" height="30" />{/each}</span>
-		</a>
-
-		<!-- 7. 암호 전보 -->
+		<!-- 6. 암호 전보 -->
 		<a class="telegram" href="/cipher">
 			<span class="tape c"></span>
 			<span class="label">보너스 미션</span>
 			<strong>암호 해독</strong>
 			<span class="code" aria-hidden="true">정탐 입신 · 2·4·5·6</span>
 		</a>
+
+		<!-- 7. 작가 도감: 보물상자를 연 뒤 -->
+		<a class="book" href="/writers">
+			<span class="ribbon" aria-hidden="true"></span>
+			<span class="label">보물상자 속 작가님</span>
+			<strong>작가 도감</strong>
+			<span class="faces" aria-hidden="true">{#each [1, 2, 3, 4] as n}<img src="/writers/w{n}.jpg" alt="" width="30" height="30" />{/each}</span>
+		</a>
 	</div>
 
-	<div class="note">
-		<span class="tape c"></span>
-		<b>신입 탐정 수칙</b>
-		<p>하나, 천천히 움직이기 · 둘, 동료 탐정 배려하기 · 셋, 도구 소중히 · 넷, 어려우면 요원 호출 · 다섯, 끝까지 임무 완수!</p>
-	</div>
+	<p class="tag"><span>두 사건을 모두 풀었다면</span></p>
+
+	<!-- 8. 신분증: 마지막 목표 -->
+	<a class="idcard wide" href="/badge" data-string="5">
+		<Pin color="#a8325f" />
+		<span class="photo" aria-hidden="true"></span>
+		<span class="txt"><span class="label">마지막 임무</span><strong>신입 탐정 임명장 받기</strong>
+			{#if live.enabled}<span class="small">오늘 신입 탐정 <b class="tnum">{live.detectives}</b>명</span>{:else}<span class="small">이름을 넣으면 나만의 임명장이 나와요</span>{/if}</span>
+		<span class="arrow" aria-hidden="true">→</span>
+	</a>
 
 	{#if path}
 		<svg class="strings" aria-hidden="true"><path d={path} /></svg>
@@ -170,12 +176,18 @@
 	.book strong { color: #fff6e0; }
 	.ribbon { position: absolute; top: -6px; right: 18px; width: 12px; height: 40px; background: #c0392b; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
 	.faces { display: flex; margin-top: 2px; }
-	.faces img { border-radius: 50%; border: 2px solid #f6e9cf; margin-right: -6px; background: #fff; }
+	.faces img { border-radius: 8px; border: 2px solid #f6e9cf; margin-right: 4px; background: #f2e2c0; }
 	.telegram { display: block; background: #f3ead2; padding: 18px 14px 14px; transform: rotate(1.2deg); border-top: 5px double #6b3f22; }
 	.telegram .code { display: block; font-family: var(--body); font-weight: 700; color: #c0392b; letter-spacing: 0.08em; font-size: 15px; }
 	.note { background: #fff3a8; padding: 18px 16px 14px; transform: rotate(0.6deg); }
 	.note b { font-family: var(--display); font-weight: 400; font-size: 18px; }
-	.note p { margin: 4px 0 0; font-size: 14.5px; line-height: 1.55; }
+	.note ol { margin: 4px 0 0; padding-left: 20px; font-size: 14.5px; line-height: 1.6; }
+	.tag { margin: 0 0 -10px; text-align: center; position: relative; z-index: 2; }
+	.tag span { display: inline-block; background: #3a2318; color: #f3dfb8; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; padding: 4px 14px; border-radius: 999px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+	.idcard.wide { grid-template-columns: 48px 1fr auto; padding: 18px 16px 16px; transform: rotate(-0.6deg); }
+	.idcard.wide .photo { width: 48px; height: 60px; }
+	.idcard.wide strong { font-size: 22px; }
+	.arrow { font-size: 26px; color: #a8325f; font-weight: 700; }
 
 	a.envelope, a.exam, a.radio, a.idcard { transition: transform 0.15s; }
 	a.envelope:active, a.exam:active, a.radio:active, a.idcard:active { transform: rotate(0deg) scale(0.98); }

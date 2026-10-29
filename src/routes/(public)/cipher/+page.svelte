@@ -100,7 +100,7 @@
 		<p class="built big">{order.join('') || '_ _ _ _'}</p>
 	{:else}
 		<div class="stamp">암호 해독 완료</div>
-		<p class="win">너는 이제 <b>장위 탐정</b>!<br />다다탐정사무소 장위지부에 온 걸 환영해요.</p>
+		<p class="win">당신은 이제 <b>장위 탐정</b>!<br />다다탐정사무소 장위지부에 온 걸 환영해요.</p>
 		<button class="again" onclick={reset}>처음부터 다시</button>
 	{/if}
 </section>

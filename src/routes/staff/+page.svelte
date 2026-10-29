@@ -76,7 +76,7 @@
 			<label for="newname"><b>명단에 이름이 없나요?</b></label>
 			<p class="small muted">선생님, 자원봉사자, 대타로 오신 분은 이름을 넣고 들어오세요.</p>
 			<div class="addrow">
-				<input id="newname" maxlength="10" placeholder="예) 김영애" bind:value={newName} autocomplete="off" />
+				<input id="newname" maxlength="10" placeholder="예) 다요원" bind:value={newName} autocomplete="off" />
 				<button class="btn primary" disabled={!newName.trim()}>들어가기</button>
 			</div>
 		</form>
