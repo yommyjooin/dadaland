@@ -24,10 +24,10 @@
 </script>
 
 {#if !b}
-	<p>부스를 찾을 수 없어요. <a href="/booths">부스 목록</a></p>
+	<p>부스를 찾을 수 없어요. <a href="/staff/booths">부스 목록</a></p>
 {:else}
 	<section class="stack" style="--t:{TEAM_COLOR[b.team]};--tb:{TEAM_BG[b.team]}">
-		<a href="/booths" class="muted small back">← 부스 목록</a>
+		<a href="/staff/booths" class="muted small back">← 부스 목록</a>
 		<div class="head">
 			<span class="k">{b.key}</span>
 			<div><h1>{b.name}</h1><span class="muted small">{TEAM_NAME[b.team]}{b.note ? ` · ${b.note}` : ''}</span></div>

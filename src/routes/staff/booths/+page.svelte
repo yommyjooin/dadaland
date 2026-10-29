@@ -12,7 +12,7 @@
 		<h2 class="th" style="color:{TEAM_COLOR[t]}">{TEAM_NAME[t]}</h2>
 		<div class="list">
 			{#each BOOTHS.filter((b) => b.team === t) as b}
-				<a class="card it" href="/booths/{encodeURIComponent(b.key)}" style="--t:{TEAM_COLOR[t]}">
+				<a class="card it" href="/staff/booths/{encodeURIComponent(b.key)}" style="--t:{TEAM_COLOR[t]}">
 					<span class="k">{b.key}</span>
 					<span><b>{b.name}</b><small class="muted">지금 {holders(b.key, idx).join(', ') || '무인'}</small></span>
 					<StatusChip booth={b.key} />

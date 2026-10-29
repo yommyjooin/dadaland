@@ -26,7 +26,7 @@
 		<div class="card alerts">
 			{#each alerts as b}
 				{@const s = live.status[b.key]}
-				<a href="/booths/{encodeURIComponent(b.key)}" class="al">
+				<a href="/staff/booths/{encodeURIComponent(b.key)}" class="al">
 					<span class="chip {s.status}"><i></i>{STATUS_LABEL[s.status]}</span>
 					<b>{b.key}. {b.name}</b>
 					<small class="muted">{s.updated_by ?? ''} · {ago(s.updated_at)}</small>
@@ -39,7 +39,7 @@
 		{#each BOOTHS as b}
 			{@const hs = holders(b.key, shown)}
 			{@const st = live.status[b.key]?.status ?? 'ok'}
-			<a class="bx {st}" href="/booths/{encodeURIComponent(b.key)}" style="--t:{TEAM_COLOR[b.team]};--tb:{TEAM_BG[b.team]}">
+			<a class="bx {st}" href="/staff/booths/{encodeURIComponent(b.key)}" style="--t:{TEAM_COLOR[b.team]};--tb:{TEAM_BG[b.team]}">
 				<span class="k">{b.key}</span>
 				<span class="nm">{b.name}</span>
 				<span class="who">{hs.length ? hs.join(', ') : '무인'}</span>

@@ -4,7 +4,7 @@
 </script>
 
 {#if latest}
-	<a class="notice" href="/info#notices">
+	<a class="notice" href="/staff/info#notices">
 		<b>공지</b><span>{latest.body}</span><small class="muted">{ago(latest.created_at)}</small>
 	</a>
 {/if}

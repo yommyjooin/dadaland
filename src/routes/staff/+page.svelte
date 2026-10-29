@@ -66,7 +66,7 @@
 				<h2 class="big">{label(curSeg.code, person.name)}</h2>
 				<p class="small">{hint(curSeg.code, curSeg.from, curSeg.to)}</p>
 				{#if left !== null}<p class="left tnum">{SLOTS[curSeg.to + 1]}까지 <b>{left}분</b> 남았어요</p>{/if}
-				{#if BOOTH[curSeg.code]}<a class="btn" href="/booths/{encodeURIComponent(curSeg.code)}">대본 보기</a>{/if}
+				{#if BOOTH[curSeg.code]}<a class="btn" href="/staff/booths/{encodeURIComponent(curSeg.code)}">대본 보기</a>{/if}
 			</div>
 		{/if}
 

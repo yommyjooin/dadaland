@@ -2,9 +2,9 @@
 	import { D } from '$lib/schedule';
 	import { live, ago } from '$lib/live.svelte';
 	import { me } from '$lib/me.svelte';
+	import FloorPlan from '$lib/components/FloorPlan.svelte';
 	let body = $state('');
 	let sending = $state(false);
-	let planOk = $state(true);
 	async function post(e: SubmitEvent) {
 		e.preventDefault();
 		const t = body.trim();
@@ -52,12 +52,10 @@
 		<ol>{#each D.detectiveRules as r}<li>{r}</li>{/each}</ol>
 	</div>
 
-	{#if planOk}
-		<div class="card">
-			<h2>공간 배치도</h2>
-			<img src="/plan.png" alt="다다랜드 공간 배치도" onerror={() => (planOk = false)} />
-		</div>
-	{/if}
+	<div class="card">
+		<h2>공간 배치도</h2>
+		<FloorPlan showStatus />
+	</div>
 </section>
 
 <style>
@@ -75,6 +73,5 @@
 	.flow { list-style: none; padding: 0; margin: 0; }
 	.flow li { display: grid; grid-template-columns: 104px 1fr; padding: 4px 0; }
 	ol { margin: 6px 0 0; }
-	img { width: 100%; border-radius: 8px; border: 1px solid var(--line); }
 	.card p { margin: 0 0 6px; }
 </style>
