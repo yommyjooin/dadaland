@@ -1,18 +1,18 @@
 import type { Status } from './live.svelte';
 
 /** 참여자에게 보여줄 부스 순서와 설명 (운영용 대본과 분리) */
-export const PUBLIC_BOOTHS: { key: string; title: string; desc: string }[] = [
-	{ key: '가', title: '신입 탐정 접수처', desc: '탐정수첩을 받는 곳' },
-	{ key: '나', title: '탐정 사진 찍기', desc: '영수증 사진기로 찰칵' },
-	{ key: '다', title: '탐정수첩 꾸미기', desc: '이름 쓰고 사진 붙이기' },
-	{ key: '라', title: '사라진 성북구의 지명', desc: 'A팀 · 지도와 단서로 찾기' },
-	{ key: '마', title: '사라진 마을 이름', desc: 'A팀 · 세 명이 함께 추리' },
-	{ key: '바', title: '작가들의 편지', desc: 'B팀 · 주사위로 장소 정하기' },
-	{ key: '사', title: '스쿱마켓', desc: 'B팀 · 국자로 열쇠 찾기' },
-	{ key: '아', title: '볼풀마당', desc: 'B팀 · 공 바다에서 열쇠 찾기' },
-	{ key: '자', title: '보물상자', desc: 'B팀 · 열쇠로 상자 열기' },
-	{ key: '차', title: '비즈 책갈피', desc: 'B팀 · 나만의 보물 만들기' },
-	{ key: '카', title: '탐정 임명식', desc: '두 사건을 해결하면 여기로!' }
+export const PUBLIC_BOOTHS: { key: string; title: string; short: string; desc: string }[] = [
+	{ key: '가', title: '신입 탐정 접수처', short: '접수처', desc: '탐정수첩을 받고, 먼저 갈 탐정단을 안내받아요' },
+	{ key: '나', title: '탐정 증명사진관', short: '증명사진관', desc: '탐정수첩에 붙일 사진을 찰칵' },
+	{ key: '다', title: '탐정수첩 등록소', short: '수첩 등록소', desc: '이름을 쓰고 사진을 붙여 내 수첩 완성' },
+	{ key: '라', title: '사라진 성북구의 지명', short: '성북구의 지명', desc: '지도와 단서로 찾기' },
+	{ key: '마', title: '사라진 마을 이름', short: '마을 이름', desc: '세 명이 함께 추리' },
+	{ key: '바', title: '작가들의 의뢰 편지', short: '의뢰 편지', desc: '편지를 읽고 주사위로 수색 장소 정하기' },
+	{ key: '사', title: '스쿱마켓', short: '스쿱마켓', desc: '국자로 열쇠 찾기' },
+	{ key: '아', title: '볼풀마당', short: '볼풀마당', desc: '공 바다에서 열쇠 찾기' },
+	{ key: '자', title: '보물상자', short: '보물상자', desc: '열쇠로 작가님의 상자 열기' },
+	{ key: '차', title: '보물 책갈피 공방', short: '책갈피 공방', desc: '찾은 보물로 나만의 책갈피' },
+	{ key: '카', title: '탐정 임명식장', short: '임명식장', desc: '두 탐정단 사건을 모두 풀면 여기로!' }
 ];
 
 export const PUBLIC_STATUS: Record<Status, { label: string; tone: 'ok' | 'busy' }> = {
@@ -29,6 +29,6 @@ export const QUIZ: Q[] = [
 	{ q: '볼풀마당에 들어갈 때 꼭 지킬 것은?', options: ['신발 신고 들어가기', '신발 벗고 들어가기', '공 밖으로 던지기', '다이빙하기'], answer: 1, why: '신발을 벗고 들어가요. 다이빙은 위험하니 절대 안 돼요!' },
 	{ q: '볼풀마당에는 한 번에 몇 명까지 들어갈 수 있을까요?', options: ['1명', '3명', '10명', '마음대로'], answer: 1, why: '친구들과 부딪히지 않게 한 번에 3명까지만 들어가요.' },
 	{ q: '비즈 책갈피를 만들 때 가위가 필요하면?', options: ['혼자 찾아서 쓴다', '친구 것을 가져간다', '운영요원에게 부탁한다', '이로 끊는다'], answer: 2, why: '가위는 운영요원이 관리해요. 필요하면 말해 주세요.' },
-	{ q: '부스에 사람이 많아 오래 기다려야 하면?', options: ['그냥 집에 간다', '탐정 대기 명단에 내 이름을 쓴다', '앞사람을 민다', '큰 소리로 재촉한다'], answer: 1, why: '대기 명단에 직접 이름을 쓰고, 다른 곳을 둘러보다 오면 돼요.' },
+	{ q: '스쿱마켓이나 볼풀마당에서 열쇠는 몇 개만 찾아올까요?', options: ['하나만', '주머니 가득', '다섯 개', '보이는 대로 전부'], answer: 0, why: '다음 탐정도 찾을 수 있게 열쇠는 딱 하나만! 쓴 열쇠는 보물상자에서 돌려줘요.' },
 	{ q: '길을 잃거나 도움이 필요하면 누구를 부를까요?', options: ['아무도 안 부른다', '운영요원', '볼풀공', '주사위'], answer: 1, why: '수칙 넷! 탐정 명찰을 단 운영요원을 불러 주세요.' }
 ];

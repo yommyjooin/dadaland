@@ -44,7 +44,7 @@
 		<Pin />
 		<span class="tape l"></span><span class="tape r"></span>
 		<p class="cap"><b>현장 지도</b> 오른쪽 입구에서 시작해 왼쪽 출구로!</p>
-		<FloorPlan showStatus fit />
+		<FloorPlan showStatus fit pub />
 	</div>
 
 	<div class="row">
@@ -52,7 +52,7 @@
 		<a class="envelope" href="/hidden" data-string="2">
 			<Pin color="#2d5aa8" />
 			<span class="flap"></span>
-			<span class="label">쉬어 가는 놀이</span>
+			<span class="label">보너스 미션</span>
 			<strong>숨은그림찾기</strong>
 			<span class="small">기다리는 동안 해 봐요.<br />꼭 안 해도 괜찮아요!</span>
 			<span class="stamp">자유 참여</span>
@@ -63,7 +63,7 @@
 			<Pin color="#2f6e3c" />
 			<span class="clip"></span>
 			<span class="label">신입 탐정 시험</span>
-			<ol><li>탐정 수칙 하나는?</li><li>볼풀에는 몇 명까지?</li><li>차례가 밀리면?</li></ol>
+			<ol><li>탐정 수칙 하나는?</li><li>볼풀에는 몇 명까지?</li><li>가위가 필요하면?</li></ol>
 			<span class="go">8문제 풀기 →</span>
 		</a>
 	</div>

@@ -73,7 +73,7 @@
 </script>
 
 <div class="sheet">
-	<p class="where"><b>현장 그림은</b> {cfg.where}에 걸려 있어요. 폰으로도 똑같이 찾을 수 있어요.</p>
+	<p class="where"><b>현장 그림은</b> {cfg.where}이에요. 폰으로도 똑같이 찾을 수 있어요.</p>
 	<h1>{cfg.title}</h1>
 	<p class="intro">{cfg.intro}</p>
 

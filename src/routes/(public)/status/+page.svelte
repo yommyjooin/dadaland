@@ -3,9 +3,9 @@
 	import { BOOTH, TEAM_COLOR } from '$lib/schedule';
 	import { PUBLIC_BOOTHS, PUBLIC_STATUS } from '$lib/public';
 	const groups = [
-		{ name: '접수처', keys: ['가', '나', '다'] },
-		{ name: 'A팀 · 동네방네 탐정단', keys: ['라', '마'] },
-		{ name: 'B팀 · 보물열쇠 탐정단', keys: ['바', '사', '아', '자', '차'] },
+		{ name: '신입 탐정 접수', keys: ['가', '나', '다'] },
+		{ name: 'A 동네방네 탐정단', keys: ['라', '마'] },
+		{ name: 'B 보물열쇠 탐정단', keys: ['바', '사', '아', '자', '차'] },
 		{ name: '마지막', keys: ['카'] }
 	];
 	const pb = Object.fromEntries(PUBLIC_BOOTHS.map((b) => [b.key, b]));
@@ -21,14 +21,14 @@
 				{@const st = live.status[k]}
 				{@const s = PUBLIC_STATUS[st?.status ?? 'ok']}
 				<li style="--t:{TEAM_COLOR[BOOTH[k].team]}">
-					<span class="k">{k}</span>
+					<span class="k"></span>
 					<span class="tx"><b>{pb[k].title}</b><small>{pb[k].desc}</small></span>
 					{#if live.enabled}<span class="s {s.tone}">{s.label}{#if st && st.status !== 'ok'}<small>{ago(st.updated_at)}</small>{/if}</span>{/if}
 				</li>
 			{/each}
 		</ul>
 	{/each}
-	<p class="tip">“조금 기다려요” 부스는 대기 명단에 이름을 쓰고, 그동안 다른 사건부터 풀어도 돼요.</p>
+	<p class="tip">“조금 기다려요” 부스는 운영요원 안내에 따라 잠깐 기다리거나, 다른 탐정단 사건부터 풀어도 돼요.</p>
 </div>
 
 <style>
@@ -40,7 +40,7 @@
 	h2 { font-size: 17px; margin: 16px 0 6px; }
 	ul { list-style: none; padding: 0; margin: 0; }
 	li { display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px dashed #c9b993; }
-	.k { width: 28px; height: 28px; border-radius: 50%; background: var(--t); color: #fff; font-family: var(--display); display: flex; align-items: center; justify-content: center; }
+	.k { width: 10px; height: 10px; border-radius: 50%; background: var(--t); flex: none; }
 	.tx small { display: block; color: var(--mute); font-size: 13px; }
 	.s { font-weight: 700; font-size: 14px; text-align: right; }
 	.s small { display: block; font-weight: 400; color: var(--mute); font-size: 11px; }
