@@ -3,10 +3,10 @@
 	import { BOOTH, TEAM_COLOR } from '$lib/schedule';
 	import { PUBLIC_BOOTHS, PUBLIC_STATUS } from '$lib/public';
 	const groups = [
-		{ name: '신입 탐정 접수', keys: ['가', '나', '다'] },
+		{ name: 'C 콧물탐정단', keys: ['가', '나', '다'] },
 		{ name: 'A 동네방네 탐정단', keys: ['라', '마'] },
 		{ name: 'B 보물열쇠 탐정단', keys: ['바', '사', '아', '자', '차'] },
-		{ name: '마지막', keys: ['카'] }
+		{ name: '마지막 · C 콧물탐정단', keys: ['카'] }
 	];
 	const pb = Object.fromEntries(PUBLIC_BOOTHS.map((b) => [b.key, b]));
 </script>
@@ -40,7 +40,7 @@
 	.off { color: var(--mute); }
 	h2 { font-size: 17px; margin: 16px 0 6px; }
 	ul { list-style: none; padding: 0; margin: 0; }
-	li { display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px dashed #c9b993; }
+	li { display: grid; grid-template-columns: 10px 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px dashed #c9b993; }
 	.k { width: 10px; height: 10px; border-radius: 50%; background: var(--t); flex: none; }
 	.tx small { display: block; color: var(--mute); font-size: 13px; }
 	.s { font-weight: 700; font-size: 14px; text-align: right; }
