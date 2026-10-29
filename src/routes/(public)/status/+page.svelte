@@ -4,7 +4,7 @@
 	import { PUBLIC_BOOTHS, PUBLIC_STATUS } from '$lib/public';
 	const groups = [
 		{ name: 'C 콧물탐정단', keys: ['가', '나', '다'] },
-		{ name: 'A 동네방네 탐정단', keys: ['라', '마'] },
+		{ name: 'A 동네방네 탐정단', keys: ['마', '라'] },
 		{ name: 'B 보물열쇠 탐정단', keys: ['바', '사', '아', '자', '차'] },
 		{ name: '마지막 임무', keys: ['카'] }
 	];
