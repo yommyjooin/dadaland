@@ -135,8 +135,8 @@
 
 	{#if done}
 		<div class="solved">
-			<span class="stampbig">사건 해결</span>
-			<p>모두 찾았어요! 현장 그림 앞에 있는 운영요원에게 이 화면을 보여주세요.</p>
+			<span class="stampbig">다 찾았다</span>
+			<p>모두 찾았어요! 눈썰미 최고 탐정이에요.</p>
 			<button class="link" onclick={reset}>처음부터 다시</button>
 		</div>
 	{/if}

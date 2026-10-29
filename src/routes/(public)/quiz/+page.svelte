@@ -22,30 +22,31 @@
 	function again() {
 		i = 0; picked = null; score = 0;
 	}
-	const title = $derived(score === QUIZ.length ? '퀴즈왕 탐정' : score >= 6 ? '눈썰미 탐정' : score >= 4 ? '꼼꼼한 탐정' : '씩씩한 견습 탐정');
+	const title = $derived(score === QUIZ.length ? '수칙 박사 탐정' : score >= 6 ? '눈썰미 탐정' : score >= 4 ? '꼼꼼한 탐정' : '씩씩한 견습 탐정');
 </script>
 
 
 {#if !finished}
-	<p class="muted tnum">{i + 1} / {QUIZ.length}</p>
-	<div class="card qcard">
-		<h2>{q.q}</h2>
+	<div class="paper qcard">
+		<div class="head"><span>신입 탐정 시험지</span><span class="tnum">{i + 1} / {QUIZ.length}</span></div>
+		<div class="bar"><i style="width:{((i + (picked !== null ? 1 : 0)) / QUIZ.length) * 100}%"></i></div>
+		<h2><span class="no">{i + 1}.</span> {q.q}</h2>
 		<div class="opts">
 			{#each q.options as o, n}
-				<button class:right={picked !== null && n === q.answer} class:wrong={picked === n && n !== q.answer} disabled={picked !== null && picked !== n && n !== q.answer} onclick={() => pick(n)}>{o}</button>
+				<button data-n={"①②③④"[n]} class:right={picked !== null && n === q.answer} class:wrong={picked === n && n !== q.answer} disabled={picked !== null && picked !== n && n !== q.answer} onclick={() => pick(n)}>{o}</button>
 			{/each}
 		</div>
 		{#if picked !== null}
-			<p class="why"><b>{picked === q.answer ? '정답!' : '아쉬워요!'}</b> {q.why}</p>
+			<p class="why"><span class="mark" class:x={picked !== q.answer}>{picked === q.answer ? "○" : "✕"}</span><b>{picked === q.answer ? '정답!' : '아쉬워요!'}</b> {q.why}</p>
 			<button class="btn primary" onclick={next}>{i + 1 === QUIZ.length ? '결과 보기' : '다음 문제'}</button>
 		{/if}
 	</div>
 {:else}
-	<div class="result">
-		<p class="kicker">탐정 퀴즈 결과</p>
+	<div class="paper result">
+		<p class="kicker">신입 탐정 시험 결과</p>
 		<p class="score tnum">{score} / {QUIZ.length}</p>
 		<h2>{title}</h2>
-		<p>단서를 잘 살폈어요! 이제 진짜 사건을 해결하러 가 볼까요?</p>
+		<p>수칙을 잘 알고 있네요! 안전하게 사건을 해결하러 가 볼까요?</p>
 		<div class="row">
 			<button class="btn" onclick={again}>다시 풀기</button>
 			<a class="btn primary" href="/status">지금 부스 보기</a>
@@ -54,19 +55,28 @@
 {/if}
 
 <style>
-	.qcard h2 { font-size: 21px; margin-bottom: 14px; }
+	.paper { position: relative; margin-top: 14px; background: #fffdf6 repeating-linear-gradient(180deg, transparent 0 31px, #dbe6f2 31px 32px); border-left: 3px solid #f0b6b0; padding: 18px 16px 18px 20px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35); transform: rotate(-0.6deg); }
+	.head { display: flex; justify-content: space-between; font-family: var(--display); color: #8a5a2b; font-size: 15px; letter-spacing: 0.06em; }
+	.bar { height: 5px; background: #eadfca; border-radius: 3px; margin: 8px 0 14px; overflow: hidden; }
+	.bar i { display: block; height: 100%; background: #2f6e3c; transition: width 0.3s; }
+	.qcard h2 { font-size: 21px; line-height: 1.4; margin: 0 0 14px; color: #2b1b12; word-break: keep-all; }
+	.no { color: #b3261e; }
 	.opts { display: grid; gap: 8px; }
-	.opts button { text-align: left; padding: 14px; border-radius: 12px; border: 2px solid var(--line); background: #fff; font-weight: 700; color: var(--ink); font-size: 17px; }
-	.opts button.right { border-color: #2f7d40; background: #eaf4e6; color: #2f6e3c; }
-	.opts button.wrong { border-color: #c0392b; background: #fbe9e7; color: #a5281b; }
-	.opts button:disabled { opacity: 0.45; }
-	.why { background: var(--tint); border-radius: 10px; padding: 10px 12px; }
-	.qcard .btn { margin-top: 4px; }
-	.result { background: #3a2318; color: #f6e9cf; border-radius: 18px; padding: 24px 20px; text-align: center; margin-top: 10px; }
-	.kicker { margin: 0; color: #e6b85c; font-weight: 700; letter-spacing: 0.1em; font-size: 13px; }
-	.score { font-family: var(--display); font-size: 54px; margin: 6px 0 0; color: #fff; }
-	.result h2 { color: #e6b85c; font-size: 26px; }
+	.opts button { position: relative; text-align: left; padding: 12px 14px 12px 42px; border-radius: 6px; border: 1.5px solid #d9ccb4; background: #fff; color: #2b1b12; font-family: var(--body); font-size: 18px; }
+	.opts button::before { content: attr(data-n); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #8a5a2b; font-size: 18px; }
+	.opts button.right { border-color: #2f7d40; background: #eef6ea; }
+	.opts button.right::after { content: ''; position: absolute; left: 6px; top: 50%; width: 30px; height: 30px; transform: translateY(-50%); border: 3px solid #c0392b; border-radius: 50%; }
+	.opts button.wrong { border-color: #c0392b; background: #fbeeec; text-decoration: line-through; text-decoration-color: #c0392b; }
+	.opts button:disabled { opacity: 0.4; }
+	.why { position: relative; background: #fff6d6; border-radius: 4px; padding: 10px 12px 10px 44px; margin: 14px 0 10px; font-size: 16px; line-height: 1.5; word-break: keep-all; }
+	.mark { position: absolute; left: 10px; top: 4px; font-size: 26px; color: #c0392b; font-weight: 700; }
+	.why b { margin-right: 4px; }
+	.qcard .btn { width: 100%; }
+	.result { text-align: center; padding: 24px 20px; }
+	.kicker { margin: 0; color: #8a5a2b; font-family: var(--display); letter-spacing: 0.1em; font-size: 14px; }
+	.score { display: inline-block; font-family: var(--display); font-size: 52px; margin: 10px 0 4px; color: #b3261e; border: 4px solid #b3261e; border-radius: 50%; padding: 6px 18px; transform: rotate(-8deg); }
+	.result h2 { color: #2b1b12; font-size: 26px; margin: 6px 0; }
+	.result p { word-break: keep-all; }
 	.row { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
 	.row .btn { text-decoration: none; }
-	.result .btn.primary { background: #e6b85c; border-color: #e6b85c; color: #3a2318; }
 </style>

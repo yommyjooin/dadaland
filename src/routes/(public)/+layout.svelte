@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	let { children } = $props();
 	const isHome = $derived(page.url.pathname === '/');
-	const titles: Record<string, string> = { '/hidden': '사건 파일 01 · 숨은그림찾기', '/quiz': '신입 탐정 시험', '/badge': '신입 탐정 임명장', '/status': '현장 무전 기록' };
+	const titles: Record<string, string> = { '/hidden': '쉬어 가는 놀이 · 숨은그림찾기', '/quiz': '신입 탐정 시험', '/badge': '신입 탐정 임명장', '/status': '현장 무전 기록' };
 	const title = $derived(titles[page.url.pathname] ?? '');
 </script>
 

@@ -52,10 +52,10 @@
 		<a class="envelope" href="/hidden" data-string="2">
 			<Pin color="#2d5aa8" />
 			<span class="flap"></span>
-			<span class="label">사건 파일 01</span>
+			<span class="label">쉬어 가는 놀이</span>
 			<strong>숨은그림찾기</strong>
-			<span class="small">B팀 입구 옆 벽의 큰 그림,<br />폰으로도 찾을 수 있어요</span>
-			<span class="stamp">폰으로 OK</span>
+			<span class="small">기다리는 동안 해 봐요.<br />꼭 안 해도 괜찮아요!</span>
+			<span class="stamp">자유 참여</span>
 		</a>
 
 		<!-- 3. 시험지 -->
@@ -63,7 +63,7 @@
 			<Pin color="#2f6e3c" />
 			<span class="clip"></span>
 			<span class="label">신입 탐정 시험</span>
-			<ol><li>돋보기는 어디에 쓸까?</li><li>탐정 수칙 하나는?</li><li>보물상자를 열려면?</li></ol>
+			<ol><li>탐정 수칙 하나는?</li><li>볼풀에는 몇 명까지?</li><li>차례가 밀리면?</li></ol>
 			<span class="go">8문제 풀기 →</span>
 		</a>
 	</div>
