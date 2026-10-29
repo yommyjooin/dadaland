@@ -67,7 +67,8 @@
 		</a>
 
 		<!-- 3. 수칙: 시작 전에 한 번 -->
-		<div class="note">
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<div class="note" ontouchstart={() => {}}>
 			<span class="tape c"></span>
 			<b>신입 탐정 수칙</b>
 			<ol><li>천천히 움직이기</li><li>동료 탐정 배려하기</li><li>도구 소중히</li><li>어려우면 요원 호출</li><li>끝까지 임무 완수!</li></ol>
@@ -198,7 +199,7 @@
 	.idcard.wide strong { font-size: 22px; }
 	.arrow { font-size: 26px; color: #a8325f; font-weight: 700; }
 
-	a.envelope, a.exam, a.radio, a.idcard { transition: transform 0.15s; }
-	a.envelope:active, a.exam:active, a.radio:active, a.idcard:active { transform: rotate(0deg) scale(0.98); }
+	a.envelope, a.exam, a.radio, a.idcard, a.book, a.telegram, .note { transition: transform 0.15s; }
+	a.envelope:active, a.exam:active, a.radio:active, a.idcard:active, a.book:active, a.telegram:active, .note:active { transform: rotate(0deg) scale(0.98); }
 	@media (prefers-reduced-motion: reduce) { a { transition: none; } }
 </style>
