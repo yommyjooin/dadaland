@@ -10,6 +10,13 @@ export const prerender = false;
 
 type Sub = { endpoint: string; p256dh: string; auth: string; name: string | null; level: 'all' | 'help' };
 type Msg = { title: string; body: string; url: string; tag: string };
+/** 받침에 맞춰 '로/으로' 붙이기 (보물상자로, 책갈피 공방으로) */
+function ro(w: string) {
+	const c = w.charCodeAt(w.length - 1) - 0xac00;
+	if (c < 0 || c > 11171) return w + '로';
+	const jong = c % 28;
+	return w + (jong === 0 || jong === 8 ? '로' : '으로');
+}
 const FRESH_MS = 90_000; // 방금 바뀐 상태·공지만 알려요 (임의 호출로 스팸 못 보내게)
 
 export const POST: RequestHandler = async ({ request, url }) => {
@@ -32,8 +39,8 @@ export const POST: RequestHandler = async ({ request, url }) => {
 		const help = s.status === 'help';
 		onlyHelp = !help;
 		msg = help
-			? { title: `🆘 ${name} 도움 필요`, body: `${s.updated_by ? s.updated_by + '님이' : '운영요원이'} 도움을 요청했어요. 가까이 있는 분은 ${name}(으)로 가 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` }
-			: { title: `⏳ ${name} 대기 많음`, body: `${s.updated_by ? s.updated_by + '님이' : '운영요원이'} 알렸어요. 지원 중인 분은 여유 있으면 ${name}(으)로 가 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` };
+			? { title: `🆘 ${name} 도움 필요`, body: `${s.updated_by ? s.updated_by + '님이' : '운영요원이'} 도움을 요청했어요. 가까이 있는 분은 ${ro(name)} 가 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` }
+			: { title: `⏳ ${name} 대기 많음`, body: `${s.updated_by ? s.updated_by + '님이' : '운영요원이'} 알렸어요. 지원 중인 분은 여유 있으면 ${ro(name)} 가 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` };
 		dedupe = `status:${s.booth}:${s.status}`;
 	} else if (body.type === 'notice') {
 		const { data: n } = await db.from('notices').select('*').eq('id', Number(body.id)).maybeSingle();
