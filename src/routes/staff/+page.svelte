@@ -27,9 +27,38 @@
 		const a = handIn(me.name, code, from), b = handOut(me.name, code, to);
 		return [a && `${a}에게 인수`, b && `${b}에게 인계`].filter(Boolean).join(' · ');
 	}
+	// 명단에 없는 사람(선생님·자원봉사자 등)도 이름을 직접 넣고 들어올 수 있어요
+	let newName = $state('');
+	function join(e: SubmitEvent) {
+		e.preventDefault();
+		const n = newName.trim().slice(0, 10);
+		if (n) { me.set(n); newName = ''; }
+	}
 </script>
 
-{#if !person}
+{#if me.name && !person}
+	<section class="stack">
+		<NoticeBar />
+		<div class="hello">
+			<div>
+				<h1>{me.name}</h1>
+				<span class="muted small">추가 운영요원</span>
+			</div>
+			<button class="link small" onclick={() => me.set(null)}>이름 바꾸기</button>
+		</div>
+		<PushCard compact />
+		<div class="card">
+			<h2>정해진 일정이 없어요</h2>
+			<p class="small muted">타임테이블에 없는 이름이라 개인 일정은 보이지 않아요. 아래 메뉴는 모두 쓸 수 있어요.</p>
+			<ul class="small guide">
+				<li><a href="/staff/now">지금</a> · 부스별 담당자와 대기·도움 요청 상황</li>
+				<li><a href="/staff/booths">부스</a> · 대본과 상태 버튼(대기 많음·도움 필요)</li>
+				<li><a href="/staff/table">전체표</a> · 모든 운영요원 시간표</li>
+				<li><a href="/staff/info">안내</a> · 공지, 운영 규칙, 공간 배치도</li>
+			</ul>
+		</div>
+	</section>
+{:else if !person}
 	<section class="stack">
 		<h1>내 이름을 골라 주세요</h1>
 		<p class="muted small">한 번 고르면 이 폰에서 기억해요.</p>
@@ -43,6 +72,14 @@
 				</div>
 			</div>
 		{/each}
+		<form class="card add" onsubmit={join}>
+			<label for="newname"><b>명단에 이름이 없나요?</b></label>
+			<p class="small muted">선생님, 자원봉사자, 대타로 오신 분은 이름을 넣고 들어오세요.</p>
+			<div class="addrow">
+				<input id="newname" maxlength="10" placeholder="예) 김영애" bind:value={newName} autocomplete="off" />
+				<button class="btn primary" disabled={!newName.trim()}>들어가기</button>
+			</div>
+		</form>
 	</section>
 {:else}
 	<section class="stack">
@@ -110,6 +147,11 @@
 
 <style>
 	.gh { font-size: 18px; margin: 6px 0 8px; }
+	.add p { margin: 4px 0 8px; }
+	.addrow { display: flex; gap: 8px; }
+	.addrow input { flex: 1; min-width: 0; font: inherit; font-size: 17px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; }
+	.addrow .btn:disabled { opacity: 0.5; }
+	.guide { margin: 8px 0 0; padding-left: 18px; line-height: 1.9; }
 	.names { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
 	.names .btn { padding: 14px 8px; font-size: 17px; }
 	.hello { display: flex; justify-content: space-between; align-items: flex-end; }
