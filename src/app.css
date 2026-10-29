@@ -1,0 +1,34 @@
+@font-face { font-family: 'Hanna11'; src: url('/fonts/hanna11.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Barunpen'; font-weight: 400; src: url('/fonts/barunpen-r.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Barunpen'; font-weight: 700; src: url('/fonts/barunpen-b.woff2') format('woff2'); font-display: swap; }
+
+:root {
+	--bg: #faf6ee; --paper: #ffffff; --ink: #2b1a12; --mute: #776a5c; --line: #e6dccb;
+	--brown: #6b3f22; --tint: #f3ece0;
+	--ok: #2f7d40; --busy: #b7791f; --help: #c0392b;
+	--A: #2d5aa8; --B: #2f6e3c; --C: #a8325f; --S: #8a5a12;
+	--Abg: #e3ebfb; --Bbg: #e1f1e3; --Cbg: #f9e2ec; --Sbg: #fff0c9; --Rbg: #ecebe5;
+	--display: 'Hanna11', 'Barunpen', system-ui, sans-serif;
+	--body: 'Barunpen', system-ui, -apple-system, 'Apple SD Gothic Neo', sans-serif;
+	color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; -webkit-text-size-adjust: 100%; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; line-height: 1.2; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.muted { color: var(--mute); }
+.small { font-size: 13px; }
+.tnum { font-variant-numeric: tabular-nums; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.chip.ok { background: #e1f1e3; color: var(--ok); }
+.chip.busy { background: #fbecd0; color: var(--busy); }
+.chip.help { background: #fadad6; color: var(--help); }
+.chip i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; display: inline-block; }
+.btn { border: 1px solid var(--line); background: var(--paper); border-radius: 12px; padding: 10px 14px; font-weight: 700; color: var(--ink); }
+.btn.primary { background: var(--brown); border-color: var(--brown); color: #fff; }
+.btn:focus-visible, a:focus-visible { outline: 3px solid #e6b85c; outline-offset: 2px; }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+/* 제목 글씨체(한나)에 없는 문자(–, · 등)는 본문 글씨체로 */
+h1 span, h2 span, h3 span, h1 small, h2 small, h3 small { font-family: var(--body); }
