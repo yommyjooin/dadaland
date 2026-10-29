@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import { clock } from '$lib/clock.svelte';
 	import { live } from '$lib/live.svelte';
+	import { me } from '$lib/me.svelte';
+	import { goto } from '$app/navigation';
 	import { fmt, toMin, SLOTS } from '$lib/schedule';
 	let { children } = $props();
 
@@ -23,10 +25,13 @@
 		end = toMin(SLOTS[11]);
 </script>
 
-<svelte:head><meta name="theme-color" content="#6b3f22" /></svelte:head>
+<svelte:head><title>다다랜드 운영요원</title><meta name="theme-color" content="#6b3f22" /></svelte:head>
 
 <header class="top">
 	<a href="/staff" class="brand"><span class="mag" aria-hidden="true"></span>다다랜드 운영요원</a>
+	{#if me.name}
+		<button class="who" onclick={() => { if (confirm(`${me.name}님이 아니신가요? 이름을 다시 고를게요.`)) { me.set(null); goto('/staff'); } }} aria-label="이름 다시 고르기">{me.name} <small>바꾸기</small></button>
+	{/if}
 	<span class="time tnum" title={clock.usingPreview ? '미리보기 시간' : '현재 시간'}>
 		{clock.usingPreview ? '미리보기 ' : ''}{fmt(clock.min)}
 	</span>
@@ -61,6 +66,8 @@
 	.brand { text-decoration: none; font-family: var(--display); font-size: 19px; display: flex; align-items: center; gap: 8px; }
 	.mag { width: 18px; height: 18px; border: 3px solid #fff; border-radius: 50%; position: relative; }
 	.mag::after { content: ''; position: absolute; width: 3px; height: 8px; background: #fff; right: -5px; bottom: -7px; transform: rotate(-45deg); border-radius: 2px; }
+	.who { margin-left: auto; margin-right: 8px; border: 1px solid rgba(255, 255, 255, 0.45); background: transparent; color: #fff; font-weight: 700; font-size: 14px; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+	.who small { font-weight: 400; opacity: 0.8; font-size: 12px; }
 	.time { font-weight: 700; background: rgba(255, 255, 255, 0.16); padding: 3px 10px; border-radius: 999px; font-size: 14px; }
 	.preview { background: #fff4d8; border-bottom: 1px solid #ecd9a8; padding: 8px max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
 	.preview input { flex: 1; min-width: 160px; accent-color: var(--brown); }

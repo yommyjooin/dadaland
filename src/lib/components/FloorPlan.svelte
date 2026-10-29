@@ -24,20 +24,23 @@
 
 <figure class="plan">
 	<div class="scroll" class:fit>
-		<svg viewBox="-12 -4 324 92" role="img" aria-label="다다랜드 공간 배치도: 오른쪽 입구에서 접수하고, 접수처가 알려주는 탐정단부터 두 사건을 해결한 뒤 왼쪽 임명식장을 지나 출구로 나가요.">
+		<svg viewBox="-12 -8 324 96" role="img" aria-label="다다랜드 공간 배치도: 오른쪽 입구에서 접수하고, 접수처가 알려주는 탐정단부터 두 사건을 해결한 뒤 왼쪽 임명식장을 지나 출구로 나가요.">
 			<defs>
 				<marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b8862b" /></marker>
 			</defs>
 			<rect x="0" y="0" width="300" height="80" rx="3" fill="#fbf7ee" stroke="#6b3f22" stroke-width="0.8" />
 			<!-- 숨은그림찾기 벽 -->
 			<rect x="176" y="8" width="4" height="50" fill="#c9b79a" />
-			<text x="182" y="62" class="lb">숨은그림찾기</text>
+			<!-- 숨은그림찾기 현수막: 월의 왼쪽(보물상자 쪽) 면 -->
+			<rect x="172.6" y="30" width="3.4" height="22" rx="0.6" fill="#e6b85c" stroke="#b8862b" stroke-width="0.4" />
+			<text x="174" y="62" class="lb hp">숨은그림찾기</text>
 			<!-- 벤치 -->
 			<rect x="186" y="72" width="60" height="7" rx="1" fill="#efe2c4" stroke="#d6c39b" stroke-width="0.4" />
 			<text x="216" y="77.2" class="lb mid">벤치</text>
 			<!-- 동선 -->
-			<text x="213" y="-0.6" class="team" fill="#2d5aa8">A 동네방네 탐정단</text>
-			<text x="110" y="-0.6" class="team" fill="#2f6e3c">B 보물열쇠 탐정단</text>
+			<text x="213" y="-2.2" class="team" fill="#2d5aa8">A 동네방네 탐정단</text>
+			<text x="110" y="-2.2" class="team" fill="#2f6e3c">B 보물열쇠 탐정단</text>
+			<text x="268" y="-2.2" class="team" fill="#a8325f">C 콧물탐정단</text>
 			<path d="M300 58 C 285 58, 280 50, 280 44 M14 14 C 6 18, 4 28, 0 32" fill="none" stroke="#b8862b" stroke-width="1.1" stroke-dasharray="2.5 2" marker-end="url(#ar)" />
 			{#each zones as z}
 				{@const st = live.status[z.k]?.status ?? 'ok'}
@@ -66,6 +69,7 @@
 	.fit svg { min-width: 0; }
 		.nm { font-size: 4.6px; font-weight: 700; text-anchor: middle; }
 	.team { font-size: 4.4px; font-weight: 700; text-anchor: middle; }
+	.hp { text-anchor: end; fill: #9a6a1c; font-weight: 700; }
 	.lb { font-size: 3.6px; fill: #8a7a62; }
 	.mid { text-anchor: middle; }
 	.door { font-size: 4.4px; font-weight: 700; text-anchor: middle; }

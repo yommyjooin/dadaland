@@ -13,7 +13,7 @@
 	const bar = $derived(isHome ? '#9a6a44' : '#6e4426');
 </script>
 
-<svelte:head><meta name="theme-color" content={bar} /></svelte:head>
+<svelte:head><title>다다탐정사무소 장위지부</title><meta name="theme-color" content={bar} /></svelte:head>
 
 <div class="desk">
 	{#if !isHome}

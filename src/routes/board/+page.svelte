@@ -22,6 +22,8 @@
 	const pb = Object.fromEntries(PUBLIC_BOOTHS.map((b) => [b.key, b.title]));
 </script>
 
+<svelte:head><title>다다랜드 전광판</title></svelte:head>
+
 <div class="board">
 	<section class="left">
 		<p class="kicker">다다탐정사무소 장위지부</p>
