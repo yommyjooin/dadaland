@@ -32,8 +32,8 @@ export const POST: RequestHandler = async ({ request, url }) => {
 		const help = s.status === 'help';
 		onlyHelp = !help;
 		msg = help
-			? { title: `🆘 도움 필요 · ${name}`, body: `${s.updated_by ?? '운영요원'}님이 도움을 요청했어요. 가까이 있으면 가 봐 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` }
-			: { title: `⏳ 대기 많음 · ${name}`, body: `${s.updated_by ?? '운영요원'} · 지원 인원은 5분 넘게 기다리는 팀이 있으면 먼저 가 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` };
+			? { title: `🆘 ${name} 도움 필요`, body: `${s.updated_by ? s.updated_by + '님이' : '운영요원이'} 도움을 요청했어요. 가까이 있는 분은 ${name}(으)로 가 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` }
+			: { title: `⏳ ${name} 대기 많음`, body: `${s.updated_by ? s.updated_by + '님이' : '운영요원이'} 알렸어요. 지원 중인 분은 여유 있으면 ${name}(으)로 가 주세요.`, url: `/staff/booths/${encodeURIComponent(s.booth)}`, tag: `b-${s.booth}` };
 		dedupe = `status:${s.booth}:${s.status}`;
 	} else if (body.type === 'notice') {
 		const { data: n } = await db.from('notices').select('*').eq('id', Number(body.id)).maybeSingle();
