@@ -12,7 +12,7 @@ export const PUBLIC_BOOTHS: { key: string; title: string; short: string; desc: s
 	{ key: '아', title: '볼풀마당', short: '볼풀마당', desc: '공 바다에서 열쇠 찾기' },
 	{ key: '자', title: '보물상자', short: '보물상자', desc: '열쇠로 작가님의 상자 열기' },
 	{ key: '차', title: '보물 책갈피 공방', short: '책갈피 공방', desc: '찾은 보물로 나만의 책갈피' },
-	{ key: '카', title: '탐정 임명식장', short: '임명식장', desc: '두 탐정단 사건을 모두 풀면 여기로!' }
+	{ key: '카', title: '탐정 임명식장', short: '임명식장', desc: '두 탐정단 사건을 모두 풀면 여기서 임명식과 기념사진!' }
 ];
 
 export const PUBLIC_STATUS: Record<Status, { label: string; tone: 'ok' | 'busy' }> = {
