@@ -39,7 +39,7 @@
 			{#each BOOTHS as b}
 				{@const s = live.status[b.key]?.status ?? 'ok'}
 				<div class="row" style="--t:{TEAM_COLOR[b.team]}">
-					<span class="k">{b.key}</span><span class="n">{pb[b.key]}</span>
+					<span class="k"></span><span class="n">{pb[b.key]}</span>
 					<span class="chip {s === 'help' ? 'busy' : s}"><i></i>{s === 'ok' ? '바로 가능' : '조금 기다려요'}</span>
 				</div>
 			{/each}
@@ -66,6 +66,6 @@
 	.right { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 	.st { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
 	.row { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.95); color: var(--ink); border-radius: 10px; padding: 8px 10px; }
-	.k { width: 28px; height: 28px; border-radius: 50%; background: var(--t); color: #fff; font-family: var(--display); display: flex; align-items: center; justify-content: center; }
+	.k { width: 12px; height: 12px; border-radius: 50%; background: var(--t); flex: none; }
 	.n { font-weight: 700; font-size: 15px; }
 </style>

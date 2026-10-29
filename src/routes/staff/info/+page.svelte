@@ -24,7 +24,7 @@
 			<form onsubmit={post} class="post">
 				<label for="nb" class="small muted">{me.name ? `${me.name} 이름으로 올라가요` : '내 일정 탭에서 이름을 먼저 골라 주세요'}</label>
 				<div class="row">
-					<input id="nb" maxlength="300" placeholder="예) 비즈 재료 보충 완료, 13시 점심 간식 대기실에 있어요" bind:value={body} />
+					<input id="nb" maxlength="300" placeholder="예) 책갈피 공방 재료 보충 완료, 13시 점심 간식 대기실에 있어요" bind:value={body} />
 					<button class="btn primary" disabled={sending || !body.trim()}>올리기</button>
 				</div>
 			</form>

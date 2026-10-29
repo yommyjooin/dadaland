@@ -72,8 +72,8 @@ class Live {
 		};
 		this.breaks = { 윤정민: { name: '윤정민', state: 'out', updated_at: t(12) }, 임서인: { name: '임서인', state: 'back', updated_at: t(2) } };
 		this.notices = [
-			{ id: 2, body: '비즈 매듭실 보충했어요. 운영 본부 박스 두 번째 칸에 있어요.', author: '장예진', created_at: t(4) },
-			{ id: 1, body: '13:30부터 정희윤님이 C 입구 대행해요.', author: '장예진', created_at: t(25) }
+			{ id: 2, body: '책갈피 공방 매듭실 보충했어요. 운영 본부 박스 두 번째 칸에 있어요.', author: '장예진', created_at: t(4) },
+			{ id: 1, body: '13:30부터 정희윤님이 접수처 대행해요.', author: '장예진', created_at: t(25) }
 		];
 		this.detectives = 42;
 		setInterval(() => {

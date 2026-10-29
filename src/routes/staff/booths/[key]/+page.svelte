@@ -29,7 +29,7 @@
 	<section class="stack" style="--t:{TEAM_COLOR[b.team]};--tb:{TEAM_BG[b.team]}">
 		<a href="/staff/booths" class="muted small back">← 부스 목록</a>
 		<div class="head">
-			<span class="k">{b.key}</span>
+			<span class="k"></span>
 			<div><h1>{b.name}</h1><span class="muted small">{TEAM_NAME[b.team]}{b.note ? ` · ${b.note}` : ''}</span></div>
 		</div>
 
@@ -68,7 +68,7 @@
 <style>
 	.back { text-decoration: none; }
 	.head { display: flex; gap: 12px; align-items: center; }
-	.k { width: 48px; height: 48px; flex: none; border-radius: 50%; background: var(--t); color: #fff; font-family: var(--display); font-size: 24px; display: flex; align-items: center; justify-content: center; }
+	.k { width: 8px; align-self: stretch; flex: none; border-radius: 4px; background: var(--t); }
 	h1 { font-size: 26px; }
 	h2 { font-size: 18px; margin-bottom: 8px; color: var(--t); }
 	.sh { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }

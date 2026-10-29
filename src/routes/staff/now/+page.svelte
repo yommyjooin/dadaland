@@ -28,7 +28,7 @@
 				{@const s = live.status[b.key]}
 				<a href="/staff/booths/{encodeURIComponent(b.key)}" class="al">
 					<span class="chip {s.status}"><i></i>{STATUS_LABEL[s.status]}</span>
-					<b>{b.key}. {b.name}</b>
+					<b>{b.name}</b>
 					<small class="muted">{s.updated_by ?? ''} · {ago(s.updated_at)}</small>
 				</a>
 			{/each}
@@ -40,7 +40,6 @@
 			{@const hs = holders(b.key, shown)}
 			{@const st = live.status[b.key]?.status ?? 'ok'}
 			<a class="bx {st}" href="/staff/booths/{encodeURIComponent(b.key)}" style="--t:{TEAM_COLOR[b.team]};--tb:{TEAM_BG[b.team]}">
-				<span class="k">{b.key}</span>
 				<span class="nm">{b.name}</span>
 				<span class="who">{hs.length ? hs.join(', ') : '무인'}</span>
 				{#if live.enabled && st !== 'ok'}<span class="chip {st}"><i></i>{STATUS_LABEL[st]}</span>{/if}
@@ -81,9 +80,8 @@
 	.bx { position: relative; display: flex; flex-direction: column; gap: 2px; text-decoration: none; background: var(--paper); border: 1px solid var(--line); border-left: 5px solid var(--t); border-radius: 12px; padding: 10px 12px; }
 	.bx.busy { border-color: var(--busy); border-left-color: var(--busy); }
 	.bx.help { border-color: var(--help); border-left-color: var(--help); background: #fff6f5; }
-	.k { font-family: var(--display); color: var(--t); font-size: 18px; }
-	.nm { font-size: 13px; color: var(--mute); }
-	.who { font-weight: 700; font-size: 16px; }
+	.nm { font-size: 15px; font-weight: 700; color: var(--t); word-break: keep-all; line-height: 1.3; }
+	.who { font-size: 15px; }
 	.bx .chip { align-self: flex-start; margin-top: 4px; }
 	.two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 	@media (max-width: 420px) { .two { grid-template-columns: 1fr; } }

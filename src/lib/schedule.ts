@@ -45,14 +45,14 @@ export function slotAt(min: number): number {
 }
 
 export function label(code: string, name?: string): string {
-	if (BOOTH[code]) return `${code}. ${BOOTH[code].name}`;
+	if (BOOTH[code]) return BOOTH[code].name;
 	if (code === '휴') return '휴식 30분';
 	if (code === '지') return `지원 · ${supportOf(name)}`;
 	if (code === '-') return name === '김동주' ? '15:00 도착' : '휴식 (11–12시)';
 	return code;
 }
 export const supportOf = (name?: string) =>
-	(name && (data.supportDefault as Record<string, string>)[name]) || '비즈';
+	(name && (data.supportDefault as Record<string, string>)[name]) || '책갈피 공방';
 
 export type Seg = { from: number; to: number; code: string };
 export function segments(p: Person): Seg[] {

@@ -44,7 +44,7 @@
 		<Pin />
 		<span class="tape l"></span><span class="tape r"></span>
 		<p class="cap"><b>현장 지도</b> 오른쪽 입구에서 시작해 왼쪽 출구로!</p>
-		<FloorPlan showStatus fit pub />
+		<FloorPlan showStatus fit />
 	</div>
 
 	<div class="row">

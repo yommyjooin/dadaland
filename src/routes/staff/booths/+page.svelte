@@ -13,7 +13,7 @@
 		<div class="list">
 			{#each BOOTHS.filter((b) => b.team === t) as b}
 				<a class="card it" href="/staff/booths/{encodeURIComponent(b.key)}" style="--t:{TEAM_COLOR[t]}">
-					<span class="k">{b.key}</span>
+					<span class="k"></span>
 					<span><b>{b.name}</b><small class="muted">지금 {holders(b.key, idx).join(', ') || '무인'}</small></span>
 					<StatusChip booth={b.key} />
 				</a>
@@ -27,6 +27,6 @@
 	.th { font-size: 17px; margin-top: 4px; }
 	.list { display: flex; flex-direction: column; gap: 8px; }
 	.it { display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center; text-decoration: none; padding: 12px 14px; }
-	.k { width: 36px; height: 36px; border-radius: 50%; background: var(--t); color: #fff; font-family: var(--display); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+	.k { width: 6px; align-self: stretch; border-radius: 3px; background: var(--t); flex: none; }
 	small { display: block; }
 </style>
