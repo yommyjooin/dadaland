@@ -120,6 +120,9 @@ do $$ begin alter publication supabase_realtime add table public.breaks; excepti
 do $$ begin alter publication supabase_realtime add table public.notices; exception when duplicate_object then null; end $$;
 do $$ begin alter publication supabase_realtime add table public.detectives; exception when duplicate_object then null; end $$;
 
+-- 행사 당일 아침(리허설 뒤) 실행: 테스트로 받은 탐정 번호를 지우고 제 1호부터 다시 시작해요.
+-- truncate public.detectives restart identity;
+
 -- 정리 (행사 후 실행): 쓰기를 막고 데이터만 남겨 둡니다.
 -- drop policy "anyone write status" on public.booth_status;
 -- drop policy "anyone update status" on public.booth_status;

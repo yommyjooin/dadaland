@@ -22,9 +22,11 @@
 		const n = name.trim().slice(0, 8);
 		if (!n || busy) return;
 		busy = true;
-		const no = live.enabled ? await live.issueDetective() : null;
+		// 같은 폰에서 같은 이름으로 다시 받으면 번호를 새로 받지 않아요 (숫자 부풀림 방지)
+		const prev = history.find((h) => h.name === n && h.no);
+		const no = prev ? prev.no : live.enabled ? await live.issueDetective() : null;
 		const m = { name: n, no };
-		history = [m, ...history].slice(0, 10);
+		history = [m, ...history.filter((h) => h.name !== n)].slice(0, 10);
 		try {
 			localStorage.setItem('dada.badges', JSON.stringify(history));
 		} catch {}
@@ -43,7 +45,7 @@
 	const canShare = typeof navigator !== 'undefined' && 'share' in navigator;
 </script>
 
-<p class="muted">두 가지 사건을 모두 해결했다면, 이름을 넣고 나만의 임명장을 받아요.</p>
+<p class="lead">두 가지 사건을 모두 해결했다면, 이름을 넣고 나만의 임명장을 받아요.</p>
 
 <form onsubmit={make} class="card form">
 	<label for="nm">탐정 이름</label>
@@ -61,7 +63,7 @@
 		<a class="btn primary" href={url} download="신입탐정_{made.name}.png">사진으로 저장</a>
 		{#if canShare}<button class="btn" onclick={share}>공유하기</button>{/if}
 	</div>
-	<p class="small muted center">저장이 안 되면 임명장을 길게 눌러 저장해요.</p>
+	<p class="small center ondark">저장이 안 되면 임명장을 길게 눌러 저장해요.</p>
 {/if}
 
 {#if history.length > 1}
@@ -83,6 +85,8 @@
 	.actions { display: flex; gap: 8px; margin-top: 12px; }
 	.actions .btn { flex: 1; text-align: center; text-decoration: none; }
 	.center { text-align: center; }
-	.sec { font-size: 18px; margin: 20px 0 8px; }
+	.lead { color: #f6e9cf; font-size: 17px; margin: 4px 0 14px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35); word-break: keep-all; }
+	.ondark { color: #f3dfb8; }
+	.sec { font-size: 18px; margin: 20px 0 8px; color: #f6e9cf; }
 	.hist { display: flex; flex-wrap: wrap; gap: 6px; }
 </style>
