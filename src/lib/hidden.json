@@ -1,0 +1,98 @@
+{
+	"image": "/hidden/picture.jpg",
+	"width": 2400,
+	"height": 2400,
+	"where": "B팀 입구(작가들의 편지·주사위) 옆 벽",
+	"title": "숨은 작가님을 찾아라!",
+	"intro": "편지를 보낸 작가님 4명과, 작가님이 남긴 흔적 4개가 숨어 있어요. 비슷하게 생긴 사람과 물건에 속지 마세요!",
+	"items": [
+		{
+			"id": "i1",
+			"no": 1,
+			"label": "이육사",
+			"hint": "동그란 안경 · 검은 머리",
+			"kind": "author",
+			"thumb": "/hidden/item1.jpg",
+			"x": 909,
+			"y": 317,
+			"r": 79
+		},
+		{
+			"id": "i2",
+			"no": 2,
+			"label": "한용운",
+			"hint": "민머리 · 회색 승복",
+			"kind": "author",
+			"thumb": "/hidden/item2.jpg",
+			"x": 1614,
+			"y": 1587,
+			"r": 79
+		},
+		{
+			"id": "i3",
+			"no": 3,
+			"label": "박완서",
+			"hint": "곱슬머리 · 분홍 옷 · 책",
+			"kind": "author",
+			"thumb": "/hidden/item3.jpg",
+			"x": 1242,
+			"y": 634,
+			"r": 79
+		},
+		{
+			"id": "i4",
+			"no": 4,
+			"label": "신경림",
+			"hint": "회색 머리 · 네모 안경",
+			"kind": "author",
+			"thumb": "/hidden/item4.jpg",
+			"x": 256,
+			"y": 1609,
+			"r": 79
+		},
+		{
+			"id": "i5",
+			"no": 5,
+			"label": "청포도",
+			"hint": "시 「청포도」",
+			"kind": "clue",
+			"thumb": "/hidden/item5.jpg",
+			"x": 894,
+			"y": 382,
+			"r": 79
+		},
+		{
+			"id": "i6",
+			"no": 6,
+			"label": "소",
+			"hint": "심우장 = 소를 찾는 집",
+			"kind": "clue",
+			"thumb": "/hidden/item6.jpg",
+			"x": 1337,
+			"y": 2048,
+			"r": 79
+		},
+		{
+			"id": "i7",
+			"no": 7,
+			"label": "민들레 홀씨",
+			"hint": "",
+			"kind": "clue",
+			"thumb": "/hidden/item7.jpg",
+			"x": 1148,
+			"y": 1938,
+			"r": 79
+		},
+		{
+			"id": "i8",
+			"no": 8,
+			"label": "갈대",
+			"hint": "시 「갈대」",
+			"kind": "clue",
+			"thumb": "/hidden/item8.jpg",
+			"x": 1554,
+			"y": 617,
+			"r": 79
+		}
+	]
+}

@@ -1,37 +1,36 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	let { children } = $props();
-	const tabs = [
-		{ href: '/', label: '지금 부스' },
-		{ href: '/mission', label: '내 미션' },
-		{ href: '/quiz', label: '탐정 퀴즈' },
-		{ href: '/badge', label: '임명장' }
-	];
-	const active = (h: string) => (h === '/' ? page.url.pathname === '/' : page.url.pathname.startsWith(h));
+	const isHome = $derived(page.url.pathname === '/');
+	const titles: Record<string, string> = { '/hidden': '사건 파일 01 · 숨은그림찾기', '/quiz': '신입 탐정 시험', '/badge': '신입 탐정 임명장', '/status': '현장 무전 기록' };
+	const title = $derived(titles[page.url.pathname] ?? '');
 </script>
 
-<div class="pub">
-	<header>
-		<a href="/" class="brand">
-			<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="#d7ecf3" stroke="#6b3f22" stroke-width="5" /><rect x="24" y="24" width="7" height="15" rx="3" transform="rotate(-45 27 31)" fill="#6b3f22" /></svg>
-			<span>다다탐정사무소<small>장위지부 · 다다랜드</small></span>
-		</a>
-	</header>
-	<main>{@render children()}</main>
-	<nav aria-label="메뉴">
-		{#each tabs as t}<a href={t.href} aria-current={active(t.href) ? 'page' : undefined}>{t.label}</a>{/each}
-	</nav>
+<div class="desk">
+	{#if !isHome}
+		<header class="tabbar">
+			<a href="/" class="back">← 사건 보드</a>
+			<span class="tab">{title}</span>
+		</header>
+	{/if}
+	<main class:home={isHome}>{@render children()}</main>
 </div>
 
 <style>
-	.pub { min-height: 100vh; background: #f6eedd radial-gradient(ellipse at 50% 0%, #fdf8ec 0%, #f3e7cf 70%) fixed; }
-	header { padding: calc(14px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 6px max(16px, env(safe-area-inset-left, 0px)); max-width: 720px; margin: 0 auto; }
-	.brand { display: inline-flex; gap: 10px; align-items: center; text-decoration: none; }
-	.brand svg { width: 34px; height: 34px; }
-	.brand span { font-family: var(--display); font-size: 20px; line-height: 1.1; color: var(--ink); }
-	.brand small { display: block; font-family: var(--body); font-size: 12px; color: var(--mute); }
-	main { max-width: 720px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(86px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-	nav { position: fixed; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(4, 1fr); background: #3a2318; padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 5; }
-	nav a { color: #e9d9bd; text-decoration: none; text-align: center; padding: 14px 2px; font-weight: 700; font-size: 15px; }
-	nav a[aria-current='page'] { color: #fff; box-shadow: inset 0 -4px 0 #e6b85c; }
+	.desk { min-height: 100vh; min-height: 100dvh;
+		background-color: #8b5e3c;
+		background-image:
+			radial-gradient(rgba(60, 30, 10, 0.35) 1px, transparent 1.5px),
+			radial-gradient(rgba(255, 220, 170, 0.18) 1px, transparent 1.6px),
+			radial-gradient(ellipse at 50% 0%, #a8774f, #7a4f31 75%);
+		background-size: 7px 7px, 11px 11px, 100% 100%;
+		background-position: 0 0, 3px 5px, 0 0; }
+	.tabbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: flex-end; gap: 10px;
+		padding: calc(10px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+		background: #6e4426; box-shadow: 0 2px 0 #4d2e18; }
+	.back { color: #f3dfb8; text-decoration: none; font-weight: 700; padding-bottom: 10px; font-size: 15px; white-space: nowrap; }
+	.tab { background: #e9d3a6; color: #3a2318; font-weight: 700; padding: 9px 14px 8px; border-radius: 10px 10px 0 0; font-size: 15px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+		box-shadow: inset 0 2px 0 #f5e6c6; }
+	main { max-width: 720px; margin: 0 auto; padding: 18px max(16px, env(safe-area-inset-right, 0px)) calc(32px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+	main.home { padding-top: calc(18px + env(safe-area-inset-top, 0px)); }
 </style>

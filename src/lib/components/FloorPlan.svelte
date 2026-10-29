@@ -1,7 +1,7 @@
 <script lang="ts">
 	// 피그마 '다다랜드 공간 배치 (30m×8m)' 초안을 기준으로 그린 동선 중심 약도. 1m = 10단위.
 	import { live } from '$lib/live.svelte';
-	let { highlight = null, showStatus = false }: { highlight?: string | null; showStatus?: boolean } = $props();
+	let { highlight = null, showStatus = false, fit = false }: { highlight?: string | null; showStatus?: boolean; fit?: boolean } = $props();
 	const C = { A: '#2d5aa8', B: '#2f6e3c', C: '#a8325f' };
 	const BG = { A: '#e3ebfb', B: '#e1f1e3', C: '#f9e2ec' };
 	type Z = { k: string; t: 'A' | 'B' | 'C'; x: number; y: number; w: number; h: number; name: string };
@@ -21,7 +21,7 @@
 </script>
 
 <figure class="plan">
-	<div class="scroll">
+	<div class="scroll" class:fit>
 		<svg viewBox="-12 -4 324 92" role="img" aria-label="다다랜드 공간 배치도: 오른쪽 입구에서 접수, 사진, 수첩을 거쳐 A팀과 B팀 사건을 해결하고 왼쪽 포토존을 지나 출구로 나가요.">
 			<defs>
 				<marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b8862b" /></marker>
@@ -61,6 +61,7 @@
 	.plan { margin: 0; }
 	.scroll { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px; }
 	svg { display: block; width: 100%; min-width: 560px; height: auto; font-family: var(--body); }
+	.fit svg { min-width: 0; }
 	.k { fill: #fff; font-size: 5px; font-weight: 700; text-anchor: middle; font-family: var(--display); }
 	.nm { font-size: 4.6px; font-weight: 700; text-anchor: middle; }
 	.lb { font-size: 3.6px; fill: #8a7a62; }

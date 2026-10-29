@@ -43,7 +43,6 @@
 	const canShare = typeof navigator !== 'undefined' && 'share' in navigator;
 </script>
 
-<h1>신입 탐정 임명장</h1>
 <p class="muted">두 가지 사건을 모두 해결했다면, 이름을 넣고 나만의 임명장을 받아요.</p>
 
 <form onsubmit={make} class="card form">
@@ -75,7 +74,6 @@
 {/if}
 
 <style>
-	h1 { font-size: 26px; margin-top: 6px; }
 	.form label { font-weight: 700; }
 	.row { display: flex; gap: 8px; margin-top: 6px; }
 	.row input { flex: 1; min-width: 0; font: inherit; font-size: 18px; padding: 12px; border: 2px solid var(--line); border-radius: 12px; }

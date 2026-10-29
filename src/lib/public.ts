@@ -21,18 +21,6 @@ export const PUBLIC_STATUS: Record<Status, { label: string; tone: 'ok' | 'busy' 
 	help: { label: '조금 기다려요', tone: 'busy' }
 };
 
-export const MISSION = [
-	{ id: 'join', label: '신입 탐정 접수하고 탐정수첩 받기', where: '가' },
-	{ id: 'photo', label: '영수증 사진기로 탐정 사진 찍기', where: '나' },
-	{ id: 'book', label: '탐정수첩에 이름 쓰고 사진 붙이기', where: '다' },
-	{ id: 'a1', label: 'A팀 · 사라진 성북구의 지명 찾기', where: '라' },
-	{ id: 'a2', label: 'A팀 · 사라진 마을 이름 추리하기', where: '마' },
-	{ id: 'b1', label: 'B팀 · 작가들의 편지 읽고 주사위 굴리기', where: '바' },
-	{ id: 'b2', label: 'B팀 · 열쇠 찾기 (스쿱마켓 또는 볼풀마당)', where: '사' },
-	{ id: 'b3', label: 'B팀 · 보물상자 열고 비즈 책갈피 만들기', where: '자' },
-	{ id: 'end', label: '탐정 임명식에서 신입 탐정 되기', where: '카' }
-] as const;
-
 export type Q = { q: string; options: string[]; answer: number; why: string };
 export const QUIZ: Q[] = [
 	{ q: '탐정이 작은 단서를 크게 보려고 쓰는 도구는?', options: ['국자', '돋보기', '주사위', '볼풀공'], answer: 1, why: '돋보기로 보면 작은 글씨와 흔적도 잘 보여요.' },

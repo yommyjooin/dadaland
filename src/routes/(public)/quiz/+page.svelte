@@ -25,7 +25,6 @@
 	const title = $derived(score === QUIZ.length ? '퀴즈왕 탐정' : score >= 6 ? '눈썰미 탐정' : score >= 4 ? '꼼꼼한 탐정' : '씩씩한 견습 탐정');
 </script>
 
-<h1>기다리는 동안 탐정 퀴즈</h1>
 
 {#if !finished}
 	<p class="muted tnum">{i + 1} / {QUIZ.length}</p>
@@ -49,13 +48,12 @@
 		<p>단서를 잘 살폈어요! 이제 진짜 사건을 해결하러 가 볼까요?</p>
 		<div class="row">
 			<button class="btn" onclick={again}>다시 풀기</button>
-			<a class="btn primary" href="/">지금 부스 보기</a>
+			<a class="btn primary" href="/status">지금 부스 보기</a>
 		</div>
 	</div>
 {/if}
 
 <style>
-	h1 { font-size: 24px; margin-top: 6px; }
 	.qcard h2 { font-size: 21px; margin-bottom: 14px; }
 	.opts { display: grid; gap: 8px; }
 	.opts button { text-align: left; padding: 14px; border-radius: 12px; border: 2px solid var(--line); background: #fff; font-weight: 700; color: var(--ink); font-size: 17px; }
