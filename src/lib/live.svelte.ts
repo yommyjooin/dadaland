@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { notify } from './push.svelte';
 
 export type Status = 'ok' | 'busy' | 'help';
 export type BoothStatus = { booth: string; status: Status; note: string | null; updated_by: string | null; updated_at: string };
@@ -89,6 +90,7 @@ class Live {
 		this.status = { ...this.status, [booth]: row };
 		const { error } = await supabase.from('booth_status').upsert(row);
 		if (error) this.error = '상태를 저장하지 못했어요. 다시 눌러 주세요.';
+		else if (status !== 'ok') notify({ type: 'status', booth });
 		return !error;
 	}
 	async setBreak(name: string, state: 'out' | 'back') {
@@ -114,8 +116,9 @@ class Live {
 	async post(body: string, author: string | null) {
 		if (this.demo) { this.notices = [{ id: Date.now(), body, author, created_at: new Date().toISOString() }, ...this.notices]; return true; }
 		if (!supabase) return false;
-		const { error } = await supabase.from('notices').insert({ body, author });
+		const { data, error } = await supabase.from('notices').insert({ body, author }).select('id').single();
 		if (error) this.error = '공지를 올리지 못했어요. 다시 시도해 주세요.';
+		else if (data) notify({ type: 'notice', id: data.id });
 		return !error;
 	}
 }

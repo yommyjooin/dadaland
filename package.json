@@ -17,6 +17,7 @@
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@types/qrcode": "^1.5.5",
+		"@types/web-push": "^3.6.4",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"typescript": "^5.0.0",
@@ -24,6 +25,7 @@
 	},
 	"dependencies": {
 		"@supabase/supabase-js": "^2.118.0",
-		"qrcode": "^1.5.4"
+		"qrcode": "^1.5.4",
+		"web-push": "^3.6.7"
 	}
 }

@@ -3,6 +3,7 @@
 	import { live, ago } from '$lib/live.svelte';
 	import { me } from '$lib/me.svelte';
 	import FloorPlan from '$lib/components/FloorPlan.svelte';
+	import PushCard from '$lib/components/PushCard.svelte';
 	let body = $state('');
 	let sending = $state(false);
 	async function post(e: SubmitEvent) {
@@ -16,6 +17,7 @@
 </script>
 
 <section class="stack">
+	<PushCard />
 	<h1>안내</h1>
 
 	<div class="card" id="notices">

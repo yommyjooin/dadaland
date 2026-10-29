@@ -23,6 +23,8 @@
 		end = toMin(SLOTS[11]);
 </script>
 
+<svelte:head><meta name="theme-color" content="#6b3f22" /></svelte:head>
+
 <header class="top">
 	<a href="/staff" class="brand"><span class="mag" aria-hidden="true"></span>다다랜드 운영요원</a>
 	<span class="time tnum" title={clock.usingPreview ? '미리보기 시간' : '현재 시간'}>

@@ -3,6 +3,7 @@
 	import { clock } from '$lib/clock.svelte';
 	import { live, ago } from '$lib/live.svelte';
 	import NoticeBar from '$lib/components/NoticeBar.svelte';
+	import PushCard from '$lib/components/PushCard.svelte';
 	import { PEOPLE, TEAM_NAME, TEAM_COLOR, TEAM_BG, SLOTS, toMin, fmt, segments, label, slotAt, handIn, handOut, BOOTH, supportOf } from '$lib/schedule';
 
 	const person = $derived(PEOPLE.find((p) => p.name === me.name));
@@ -53,6 +54,7 @@
 			</div>
 			<button class="link small" onclick={() => me.set(null)}>이름 바꾸기</button>
 		</div>
+		<PushCard compact />
 
 		{#if idx < 0}
 			<div class="card now"><span class="muted small">운영 시작 전</span><h2>11:20 부스 운영 시작</h2>

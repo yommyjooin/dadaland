@@ -32,3 +32,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; line-heig
 .stack { display: flex; flex-direction: column; gap: 12px; }
 /* 제목 글씨체(한나)에 없는 문자(–, · 등)는 본문 글씨체로 */
 h1 span, h2 span, h3 span, h1 small, h2 small, h3 small { font-family: var(--body); }
+
+/* 참여자 화면: 브라우저 위·아래 여백까지 코르크 색 */
+html.cork, html.cork body { background-color: #7a4f31; }

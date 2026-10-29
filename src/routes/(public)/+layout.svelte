@@ -4,7 +4,16 @@
 	const isHome = $derived(page.url.pathname === '/');
 	const titles: Record<string, string> = { '/hidden': '보너스 미션 · 숨은그림찾기', '/quiz': '신입 탐정 시험', '/badge': '신입 탐정 임명장', '/status': '현장 무전 기록' };
 	const title = $derived(titles[page.url.pathname] ?? '');
+	// 휴대폰 브라우저 위·아래 막대도 코르크 보드 색으로 (참여자 화면에서만)
+	$effect(() => {
+		const el = document.documentElement;
+		el.classList.add('cork');
+		return () => el.classList.remove('cork');
+	});
+	const bar = $derived(isHome ? '#9a6a44' : '#6e4426');
 </script>
+
+<svelte:head><meta name="theme-color" content={bar} /></svelte:head>
 
 <div class="desk">
 	{#if !isHome}

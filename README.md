@@ -35,6 +35,7 @@
 - **지금 현황** — 11개 부스 현재 담당자, 휴식·지원 인원, 다음 교대까지 남은 시간과 이동 목록. 문제가 생긴 부스는 맨 위로.
 - **부스** — 담당 시간 막대(현재 시각 선), 부스별 대본, 수시 확인 사항, 상태 버튼.
 - **휴식 체크·공지** — 휴식 출발/복귀, 운영팀장 공지가 모두에게 실시간 반영.
+- **휴대폰 알림 (웹 푸시)** — 누군가 '도움 필요'·'대기 많음'을 누르거나 공지를 올리면, 앱을 닫아 둔 운영요원 폰에도 잠금 화면 알림이 가요. 서버 함수가 상태가 방금 바뀌었는지 DB에서 확인하고, 같은 알림은 2분에 한 번만 보내요(임의 호출로 스팸 불가). 아이폰은 홈 화면에 추가한 앱에서 켜요.
 - **미리보기 시간** — 행사 당일이 아니면 슬라이더로 시간을 골라 리허설할 수 있어요.
 
 ## 구조
@@ -78,6 +79,7 @@ npm run dev            # http://localhost:5173/?demo 로 데모 데이터 확인
 1. Supabase 새 프로젝트 → SQL Editor에서 `supabase/schema.sql` 실행
 2. Vercel에서 이 저장소 Import (SvelteKit 자동 인식)
 3. Vercel 환경변수 `PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY` 입력 후 재배포
+4. (알림) `npx web-push generate-vapid-keys`로 키를 만들어 `PUBLIC_VAPID_KEY`, `VAPID_PRIVATE_KEY`, 그리고 서버 전용 `SUPABASE_SERVICE_ROLE_KEY`를 넣고 재배포
 
 일정을 바꾸려면 `src/lib/data.json`의 `people[].slots`(11칸: 11:20, 12:00 … 16:30, 값은 부스 글자 가~카 · `휴` · `지` · `-`)를 고치면 돼요. 배치도 좌표는 `src/lib/components/FloorPlan.svelte`에 있어요.
 
