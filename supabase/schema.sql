@@ -27,16 +27,22 @@ alter table public.booth_status enable row level security;
 alter table public.breaks enable row level security;
 alter table public.notices enable row level security;
 
-create policy "anyone read status"  on public.booth_status for select using (true);
-create policy "anyone write status" on public.booth_status for insert with check (true);
-create policy "anyone update status" on public.booth_status for update using (true) with check (true);
+-- 'Automatically expose new tables'를 끈 프로젝트에서도 앱이 쓸 수 있게 필요한 권한만 직접 줘요.
+grant usage on schema public to anon, authenticated;
+grant select, insert, update on public.booth_status to anon, authenticated;
+grant select, insert, update on public.breaks to anon, authenticated;
+grant select, insert on public.notices to anon, authenticated;
 
-create policy "anyone read breaks"  on public.breaks for select using (true);
-create policy "anyone write breaks" on public.breaks for insert with check (true);
-create policy "anyone update breaks" on public.breaks for update using (true) with check (true);
+create policy "anyone read status"  on public.booth_status for select to anon, authenticated using (true);
+create policy "anyone write status" on public.booth_status for insert to anon, authenticated with check (true);
+create policy "anyone update status" on public.booth_status for update to anon, authenticated using (true) with check (true);
 
-create policy "anyone read notices" on public.notices for select using (true);
-create policy "anyone post notices" on public.notices for insert with check (true);
+create policy "anyone read breaks"  on public.breaks for select to anon, authenticated using (true);
+create policy "anyone write breaks" on public.breaks for insert to anon, authenticated with check (true);
+create policy "anyone update breaks" on public.breaks for update to anon, authenticated using (true) with check (true);
+
+create policy "anyone read notices" on public.notices for select to anon, authenticated using (true);
+create policy "anyone post notices" on public.notices for insert to anon, authenticated with check (true);
 
 -- 실시간 반영
 alter publication supabase_realtime add table public.booth_status;
