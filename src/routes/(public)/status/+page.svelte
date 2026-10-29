@@ -29,7 +29,6 @@
 			{/each}
 		</ul>
 	{/each}
-	<p class="tip">“조금 기다려요” 부스는 운영요원 안내에 따라 잠깐 기다리거나, 다른 탐정단 사건부터 풀어도 돼요.</p>
 </div>
 
 <style>
@@ -46,5 +45,4 @@
 	.s { font-weight: 700; font-size: 14px; text-align: right; }
 	.s small { display: block; font-weight: 400; color: var(--mute); font-size: 11px; }
 	.s.ok { color: #2f7d40; } .s.busy { color: #b7791f; }
-	.tip { margin: 14px 0 0; font-size: 14px; background: #fff3a8; padding: 10px 12px; }
 </style>
