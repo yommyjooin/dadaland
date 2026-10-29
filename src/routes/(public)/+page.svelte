@@ -87,6 +87,24 @@
 		</a>
 	</div>
 
+	<div class="row">
+		<!-- 6. 작가 도감 -->
+		<a class="book" href="/writers">
+			<span class="ribbon" aria-hidden="true"></span>
+			<span class="label">보물상자 속 작가님</span>
+			<strong>작가 도감</strong>
+			<span class="faces" aria-hidden="true">{#each [1, 2, 3, 4] as n}<img src="/hidden/item{n}.jpg" alt="" width="30" height="30" />{/each}</span>
+		</a>
+
+		<!-- 7. 암호 전보 -->
+		<a class="telegram" href="/cipher">
+			<span class="tape c"></span>
+			<span class="label">보너스 미션</span>
+			<strong>암호 해독</strong>
+			<span class="code" aria-hidden="true">정탐 입신 · 2·4·5·6</span>
+		</a>
+	</div>
+
 	<div class="note">
 		<span class="tape c"></span>
 		<b>신입 탐정 수칙</b>
@@ -109,7 +127,7 @@
 	.plate span { display: block; font-family: var(--display); font-size: 26px; letter-spacing: 0.08em; text-shadow: 0 1px 0 #f6dc9a; }
 	.plate small { font-weight: 700; font-size: 12px; letter-spacing: 0.12em; }
 
-	.paper, .envelope, .exam, .radio, .idcard, .note { position: relative; z-index: 2; text-decoration: none; color: #2b1a12; box-shadow: 2px 6px 12px rgba(30, 15, 5, 0.38); }
+	.paper, .envelope, .exam, .radio, .idcard, .note, .book, .telegram { position: relative; z-index: 2; text-decoration: none; color: #2b1a12; box-shadow: 2px 6px 12px rgba(30, 15, 5, 0.38); }
 	.label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #8a5a12; }
 	strong { display: block; word-break: keep-all; font-family: var(--display); font-weight: 400; font-size: 23px; line-height: 1.15; margin: 4px 0 6px; }
 
@@ -147,6 +165,14 @@
 	.idcard strong { font-size: 20px; word-break: keep-all; }
 	.txt { min-width: 0; }
 
+	.book { display: block; background: linear-gradient(90deg, #4a2a16 0 10px, #7a3b2a 10px); color: #f6e9cf; padding: 16px 14px 14px 22px; border-radius: 3px 8px 8px 3px; transform: rotate(-1.4deg); }
+	.book .label { color: #e6b85c; }
+	.book strong { color: #fff6e0; }
+	.ribbon { position: absolute; top: -6px; right: 18px; width: 12px; height: 40px; background: #c0392b; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
+	.faces { display: flex; margin-top: 2px; }
+	.faces img { border-radius: 50%; border: 2px solid #f6e9cf; margin-right: -6px; background: #fff; }
+	.telegram { display: block; background: #f3ead2; padding: 18px 14px 14px; transform: rotate(1.2deg); border-top: 5px double #6b3f22; }
+	.telegram .code { display: block; font-family: var(--body); font-weight: 700; color: #c0392b; letter-spacing: 0.08em; font-size: 15px; }
 	.note { background: #fff3a8; padding: 18px 16px 14px; transform: rotate(0.6deg); }
 	.note b { font-family: var(--display); font-weight: 400; font-size: 18px; }
 	.note p { margin: 4px 0 0; font-size: 14.5px; line-height: 1.55; }

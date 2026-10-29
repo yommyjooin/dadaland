@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	let { children } = $props();
 	const isHome = $derived(page.url.pathname === '/');
-	const titles: Record<string, string> = { '/hidden': '보너스 미션 · 숨은그림찾기', '/quiz': '신입 탐정 시험', '/badge': '신입 탐정 임명장', '/status': '현장 무전 기록' };
+	const titles: Record<string, string> = { '/hidden': '보너스 미션 · 숨은그림찾기', '/quiz': '신입 탐정 시험', '/badge': '신입 탐정 임명장', '/status': '현장 무전 기록', '/writers': '작가 도감', '/cipher': '보너스 미션 · 탐정 암호 해독' };
 	const title = $derived(titles[page.url.pathname] ?? '');
 	// 휴대폰 브라우저 위·아래 막대도 코르크 보드 색으로 (참여자 화면에서만)
 	$effect(() => {
