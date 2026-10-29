@@ -2,8 +2,8 @@
 	// 탐정 암호 해독: 네 개의 암호를 풀 때마다 비밀 글자를 하나씩 얻고, 마지막에 순서대로 맞춰요.
 	type Stage = { title: string; how: string; reward: string };
 	const STAGES: Stage[] = [
-		{ title: '거꾸로 암호', how: '글자가 거꾸로 적혀 있어요. 뒤에서부터 읽어 보세요.', reward: '장' },
-		{ title: '숫자 암호', how: '숫자표를 보고 숫자를 글자로 바꿔요. 순서대로 글자를 눌러요.', reward: '위' },
+		{ title: '거꾸로 암호', how: '글자가 거꾸로 적혀 있어요. 뒤에서부터 읽어 보세요.', reward: '다' },
+		{ title: '숫자 암호', how: '숫자표를 보고 숫자를 글자로 바꿔요. 순서대로 글자를 눌러요.', reward: '다' },
 		{ title: '가짜 글자 암호', how: '빨간 글자는 범인이 끼워 넣은 가짜예요! 검은 글자만 읽어요.', reward: '탐' },
 		{ title: '흔적 암호', how: '이 흔적을 남긴 작가님은 누구일까요? 작가 도감에 힌트가 있어요.', reward: '정' }
 	];
@@ -36,16 +36,18 @@
 		}
 	}
 	const got = $derived(STAGES.filter((_, i) => solved[i]).map((s) => s.reward));
-	const tiles = ['탐', '장', '정', '위'];
-	function tapTile(t: string) {
-		if (done || order.includes(t)) return;
-		order = [...order, t];
+	const tiles = ['탐', '다', '정', '다'];
+	let picked = $state<number[]>([]);
+	function tapTile(n: number) {
+		if (done || picked.includes(n)) return;
+		picked = [...picked, n];
+		order = picked.map((i) => tiles[i]);
 		if (order.length === 4) {
-			if (order.join('') === '장위탐정') { done = true; save(); }
-			else { wrong = 9; setTimeout(() => { order = []; wrong = null; }, 900); }
+			if (order.join('') === '다다탐정') { done = true; save(); }
+			else { wrong = 9; setTimeout(() => { order = []; picked = []; wrong = null; }, 900); }
 		}
 	}
-	function reset() { solved = [false, false, false, false]; done = false; order = []; built = []; save(); }
+	function reset() { solved = [false, false, false, false]; done = false; order = []; picked = []; built = []; save(); }
 </script>
 
 <p class="lead">범인이 남긴 암호 전보 네 장! 하나 풀 때마다 <b>비밀 글자</b>를 얻어요. 네 글자를 모아 암호를 완성해 봐요.</p>
@@ -95,12 +97,12 @@
 	{#if got.length < 4}
 		<p class="how">전보 네 장을 모두 풀면 열려요. ({got.length}/4)</p>
 	{:else if !done}
-		<p class="how">비밀 글자를 알맞은 순서로 눌러 우리 동네 탐정 이름을 완성해요.</p>
-		<div class="tiles">{#each tiles as t}<button disabled={order.includes(t)} onclick={() => tapTile(t)}>{t}</button>{/each}</div>
+		<p class="how">비밀 글자를 알맞은 순서로 눌러 우리 탐정사무소 이름을 완성해요.</p>
+		<div class="tiles">{#each tiles as t, n}<button disabled={picked.includes(n)} onclick={() => tapTile(n)}>{t}</button>{/each}</div>
 		<p class="built big">{order.join('') || '_ _ _ _'}</p>
 	{:else}
 		<div class="stamp">암호 해독 완료</div>
-		<p class="win">당신은 이제 <b>장위 탐정</b>!<br />다다탐정사무소 장위지부에 온 걸 환영해요.</p>
+		<p class="win">당신은 이제 <b>다다 탐정</b>!<br />다다탐정사무소 장위지부에 온 걸 환영해요.</p>
 		<button class="again" onclick={reset}>처음부터 다시</button>
 	{/if}
 </section>

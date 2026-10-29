@@ -39,10 +39,10 @@
 		<FloorPlan showStatus />
 		<div class="st">
 			{#each BOOTHS as b}
-				{@const s = live.status[b.key]?.status ?? 'ok'}
+				{@const s = live.cur(b.key)?.status ?? 'ok'}
 				<div class="row" style="--t:{TEAM_COLOR[b.team]}">
 					<span class="k"></span><span class="n">{pb[b.key]}</span>
-					<span class="chip {s === 'help' ? 'busy' : s}"><i></i>{s === 'ok' ? '바로 가능' : '조금 기다려요'}</span>
+					{#if s !== 'ok'}<span class="chip busy"><i></i>조금 기다려요</span>{/if}
 				</div>
 			{/each}
 		</div>

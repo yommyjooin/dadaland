@@ -15,7 +15,7 @@
 			: PEOPLE.filter((p) => p.slots[nextIdx] !== p.slots[shown]).map((p) => ({ name: p.name, to: p.slots[nextIdx], from: p.slots[shown] }))
 	);
 	const minsToNext = $derived(nextIdx === null ? null : toMin(SLOTS[nextIdx]) - clock.min);
-	const alerts = $derived(BOOTHS.filter((b) => live.status[b.key] && live.status[b.key].status !== 'ok'));
+	const alerts = $derived(BOOTHS.filter((b) => (live.cur(b.key)?.status ?? 'ok') !== 'ok'));
 </script>
 
 <section class="stack">
@@ -25,7 +25,7 @@
 	{#if alerts.length}
 		<div class="card alerts">
 			{#each alerts as b}
-				{@const s = live.status[b.key]}
+				{@const s = live.cur(b.key)!}
 				<a href="/staff/booths/{encodeURIComponent(b.key)}" class="al">
 					<span class="chip {s.status}"><i></i>{STATUS_LABEL[s.status]}</span>
 					<b>{b.name}</b>
@@ -38,7 +38,7 @@
 	<div class="grid">
 		{#each BOOTHS as b}
 			{@const hs = holders(b.key, shown)}
-			{@const st = live.status[b.key]?.status ?? 'ok'}
+			{@const st = live.cur(b.key)?.status ?? 'ok'}
 			<a class="bx {st}" href="/staff/booths/{encodeURIComponent(b.key)}" style="--t:{TEAM_COLOR[b.team]};--tb:{TEAM_BG[b.team]}">
 				<span class="nm">{b.name}</span>
 				<span class="who">{hs.length ? hs.join(', ') : '무인'}</span>

@@ -16,7 +16,7 @@ export const PUBLIC_BOOTHS: { key: string; title: string; short: string; desc: s
 ];
 
 export const PUBLIC_STATUS: Record<Status, { label: string; tone: 'ok' | 'busy' }> = {
-	ok: { label: '바로 할 수 있어요', tone: 'ok' },
+	ok: { label: '', tone: 'ok' },
 	busy: { label: '조금 기다려요', tone: 'busy' },
 	help: { label: '조금 기다려요', tone: 'busy' }
 };

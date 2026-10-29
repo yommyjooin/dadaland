@@ -8,7 +8,7 @@
 	const b = $derived(BOOTH[data.key]);
 	const iv = $derived(b ? intervals(b.key) : []);
 	const idx = $derived(slotAt(clock.min));
-	const st = $derived(b ? live.status[b.key] : undefined);
+	const st = $derived(b ? live.cur(b.key) : undefined);
 	const span = toMin(SLOTS[11]) - toMin(SLOTS[0]);
 	const pos = (i: number) => ((toMin(SLOTS[i]) - toMin(SLOTS[0])) / span) * 100;
 	const lanes = $derived.by(() => {
@@ -41,6 +41,7 @@
 						<button class="chip {s}" aria-pressed={(st?.status ?? 'ok') === s} onclick={() => live.setStatus(b.key, s, me.name)}><i></i>{STATUS_LABEL[s]}</button>
 					{/each}
 				</div>
+				<p class="small muted">대기 많음·도움 필요는 20분 뒤 자동으로 보통이 돼요. 계속 붐비면 다시 눌러 주세요.</p>
 				<p class="small muted">5분 넘게 기다리는 팀이 생기면 '대기 많음', 사람이 더 필요하면 '도움 필요'. 지원 인원과 운영팀장 화면에 바로 떠요.</p>
 			</div>
 		{/if}

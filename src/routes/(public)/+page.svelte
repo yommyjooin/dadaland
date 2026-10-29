@@ -3,10 +3,11 @@
 	import { live } from '$lib/live.svelte';
 	import FloorPlan from '$lib/components/FloorPlan.svelte';
 	import Pin from '$lib/components/Pin.svelte';
+	import { PUBLIC_BOOTHS } from '$lib/public';
 
 	let board: HTMLDivElement;
 	let pins = $state<{ x: number; y: number }[]>([]);
-	const busy = $derived(Object.values(live.status).filter((s) => s.status !== 'ok').length);
+	const busyList = $derived(PUBLIC_BOOTHS.filter((b) => (live.cur(b.key)?.status ?? 'ok') !== 'ok'));
 
 	// 압정 위치를 읽어서 빨간 실을 그려요.
 	function measure() {
@@ -52,8 +53,16 @@
 		<a class="radio" href="/status" data-string="2">
 			<Pin color="#b8862b" />
 			<span class="label">현장 무전</span>
-			<strong>{busy ? `${busy}곳이 붐벼요` : '모든 부스 원활'}</strong>
-			<span class="small">어디가 한산한지 보고 가요</span>
+			{#if !live.enabled}
+				<strong>행사 날 켜져요</strong>
+				<span class="small">붐비는 부스를 운영요원이 알려 줘요</span>
+			{:else if busyList.length}
+				<strong>붐비는 곳 {busyList.length}</strong>
+				<span class="small">{busyList.map((b) => b.short).join(', ')}</span>
+			{:else}
+				<strong>붐빈다는 무전 없음</strong>
+				<span class="small">붐비면 운영요원이 알려 줘요</span>
+			{/if}
 			{#if live.enabled}<span class="live" class:on={live.connected}>● 실시간</span>{/if}
 		</a>
 

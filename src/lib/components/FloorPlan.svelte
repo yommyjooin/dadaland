@@ -43,7 +43,7 @@
 			<text x="268" y="-2.2" class="team" fill="#a8325f">C 콧물탐정단</text>
 			<path d="M300 58 C 285 58, 280 50, 280 44 M14 14 C 6 18, 4 28, 0 32" fill="none" stroke="#b8862b" stroke-width="1.1" stroke-dasharray="2.5 2" marker-end="url(#ar)" />
 			{#each zones as z}
-				{@const st = live.status[z.k]?.status ?? 'ok'}
+				{@const st = live.cur(z.k)?.status ?? 'ok'}
 				<g class:hl={highlight === z.k}>
 					<rect x={z.x} y={z.y} width={z.w} height={z.h} rx="3" fill={BG[z.t]} stroke={C[z.t]} stroke-width={highlight === z.k ? 1.6 : 0.6} />
 					<text x={z.x + z.w / 2} y={z.y + z.h / 2 + 1.6} class="nm" fill={C[z.t]}>{SHORT[z.k]}</text>

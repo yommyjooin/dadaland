@@ -2,6 +2,7 @@ import { supabase } from './supabase';
 import { notify } from './push.svelte';
 
 export type Status = 'ok' | 'busy' | 'help';
+export const AUTO_RESET_MIN = 20;
 export type BoothStatus = { booth: string; status: Status; note: string | null; updated_by: string | null; updated_at: string };
 export type BreakRow = { name: string; state: 'out' | 'back'; updated_at: string };
 export type Notice = { id: number; body: string; author: string | null; created_at: string };
@@ -17,7 +18,17 @@ class Live {
 	detectives = $state(0);
 	lastDetectiveAt = $state<string | null>(null);
 	error = $state<string | null>(null);
+	/** 30초마다 갱신되는 현재 시각 (자동 해제 계산용) */
+	now = $state(Date.now());
 	#started = false;
+	#tick = typeof window !== 'undefined' ? setInterval(() => (this.now = Date.now()), 30_000) : null;
+
+	/** 지금 유효한 부스 상태. '대기 많음'·'도움 필요'는 20분 동안 다시 누르지 않으면 자동으로 보통이 돼요. */
+	cur(booth: string): BoothStatus | undefined {
+		const s = this.status[booth];
+		if (!s || s.status === 'ok') return s;
+		return this.now - new Date(s.updated_at).getTime() > AUTO_RESET_MIN * 60_000 ? { ...s, status: 'ok' } : s;
+	}
 
 	async start() {
 		if (this.#started) return;

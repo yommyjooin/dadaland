@@ -13,17 +13,18 @@
 
 <div class="log">
 	<p class="head">현장 무전 기록 {#if live.enabled}<span class:on={live.connected}>● {live.connected ? '수신 중' : '연결 중'}</span>{/if}</p>
-	{#if !live.enabled}<p class="off">무전은 행사 당일(10/31)에 켜져요.</p>{/if}
+	{#if !live.enabled}<p class="off">무전은 행사 당일(10/31)에 켜져요.</p>
+	{:else}<p class="off">운영요원이 ‘붐벼요’라고 알린 부스만 표시돼요. 표시가 없으면 평소대로 진행 중이에요.</p>{/if}
 	{#each groups as g}
 		<h2>{g.name}</h2>
 		<ul>
 			{#each g.keys as k}
-				{@const st = live.status[k]}
+				{@const st = live.cur(k)}
 				{@const s = PUBLIC_STATUS[st?.status ?? 'ok']}
 				<li style="--t:{TEAM_COLOR[BOOTH[k].team]}">
 					<span class="k"></span>
 					<span class="tx"><b>{pb[k].title}</b><small>{pb[k].desc}</small></span>
-					{#if live.enabled}<span class="s {s.tone}">{s.label}{#if st && st.status !== 'ok'}<small>{ago(st.updated_at)}</small>{/if}</span>{/if}
+					{#if live.enabled && st && st.status !== 'ok'}<span class="s {s.tone}">{s.label}<small>{ago(st.updated_at)}</small></span>{/if}
 				</li>
 			{/each}
 		</ul>
