@@ -8,8 +8,8 @@ export const PUBLIC_BOOTHS: { key: string; title: string; short: string; desc: s
 	{ key: '마', title: '사라진 마을 이름', short: '마을 이름', desc: 'A팀은 여기부터 · 세 명이 함께 추리' },
 	{ key: '라', title: '사라진 성북구의 지명', short: '성북구의 지명', desc: '지도와 단서로 찾기' },
 	{ key: '바', title: '작가들의 의뢰 편지', short: '의뢰 편지', desc: '편지를 읽고 주사위로 수색 장소 정하기' },
-	{ key: '사', title: '스쿱마켓', short: '스쿱마켓', desc: '국자로 열쇠 찾기' },
-	{ key: '아', title: '볼풀마당', short: '볼풀마당', desc: '공 바다에서 열쇠 찾기' },
+	{ key: '사', title: '스쿱마켓', short: '스쿱마켓', desc: '국자로 작은 열쇠 찾기' },
+	{ key: '아', title: '볼풀마당', short: '볼풀마당', desc: '공 바다에서 큰 열쇠 찾기' },
 	{ key: '자', title: '보물상자', short: '보물상자', desc: '열쇠로 작가님의 상자 열기' },
 	{ key: '차', title: '보물 책갈피 공방', short: '책갈피 공방', desc: '찾은 보물로 나만의 책갈피' },
 	{ key: '카', title: '탐정 임명식장', short: '임명식장', desc: '두 탐정단 사건을 모두 풀면 여기서 임명식과 기념사진!' }

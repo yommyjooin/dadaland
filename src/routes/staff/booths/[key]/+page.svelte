@@ -21,6 +21,20 @@
 	});
 	const nowPct = $derived(Math.min(100, Math.max(0, ((clock.min - toMin(SLOTS[0])) / span) * 100)));
 	const statuses: Status[] = ['ok', 'busy', 'help'];
+	// 대본에서 “따옴표” 안은 그대로 말하는 대사, 나머지는 진행 설명
+	function parts(t: string) {
+		const out: { say: boolean; text: string }[] = [];
+		let i = 0;
+		for (const m of t.matchAll(/“[^”]*”/g)) {
+			const a = t.slice(i, m.index).trim();
+			if (a) out.push({ say: false, text: a });
+			out.push({ say: true, text: m[0] });
+			i = (m.index ?? 0) + m[0].length;
+		}
+		const rest = t.slice(i).trim();
+		if (rest) out.push({ say: false, text: rest });
+		return out;
+	}
 </script>
 
 {#if !b}
@@ -60,7 +74,8 @@
 
 		<div class="card">
 			<h2>대본</h2>
-			<dl>{#each b.script as s}<dt>{s.label}</dt><dd>{s.text}</dd>{/each}</dl>
+			<p class="small muted legend"><span class="say">“굵은 글씨”</span>는 그대로 말하는 대사, 보통 글씨는 진행 설명이에요.</p>
+			<dl>{#each b.script as s}<dt>{s.label}</dt><dd>{#each parts(s.text) as p}{#if p.say}<span class="say">{p.text}</span>{' '}{:else}<span class="act">{p.text}</span>{' '}{/if}{/each}</dd>{/each}</dl>
 		</div>
 		<div class="card chk"><b>수시로 확인</b><ul>{#each b.checks as c}<li>{c}</li>{/each}</ul></div>
 	</section>
@@ -90,6 +105,9 @@
 	.iv li.on b { color: var(--t); }
 	dl { display: grid; grid-template-columns: 76px 1fr; gap: 8px 10px; margin: 0; }
 	dt { font-weight: 700; color: var(--t); font-size: 14px; }
-	dd { margin: 0; font-size: 15px; }
+	dd { margin: 0; font-size: 15px; line-height: 1.6; }
+	.say { font-weight: 700; background: var(--tb); border-radius: 4px; padding: 1px 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+	.act { color: var(--ink); }
+	.legend { margin: 0 0 10px; }
 	.chk ul { margin: 6px 0 0; padding-left: 18px; }
 </style>
